@@ -19,22 +19,36 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Navbar */}
-      <nav style={{ background: "#111111", padding: "0" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px", display: "flex", justifyContent: "space-between", alignItems: "center", height: "64px" }}>
-          <div style={{ color: "#fff", fontSize: "26px", fontWeight: "bold", letterSpacing: "1px" }}>
-            <span style={{ color: "#cc0000" }}>BAIDOA</span> ONLINE
+      {/* Navbar - WHITE background like Option 2 */}
+      <nav style={{ background: "#ffffff", padding: "0", borderBottom: "3px solid #cc0000", boxShadow: "0 2px 8px rgba(0,0,0,0.08)" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px", display: "flex", justifyContent: "space-between", alignItems: "center", height: "70px" }}>
+
+          {/* Logo */}
+          <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+            <div style={{ position: "relative", width: "44px", height: "44px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#cc0000", position: "absolute" }}></div>
+              <div style={{ width: "22px", height: "22px", borderRadius: "50%", border: "2.5px solid #cc0000", opacity: 0.7, position: "absolute" }}></div>
+              <div style={{ width: "36px", height: "36px", borderRadius: "50%", border: "2px solid #cc0000", opacity: 0.3, position: "absolute" }}></div>
+            </div>
+            <div>
+              <div style={{ color: "#111111", fontSize: "26px", fontWeight: "900", letterSpacing: "3px", lineHeight: "1" }}>BAIDOA</div>
+              <div style={{ color: "#cc0000", fontSize: "11px", fontWeight: "600", letterSpacing: "8px", lineHeight: "1.4" }}>ONLINE</div>
+            </div>
           </div>
+
+          {/* Nav links */}
           <div style={{ display: "flex", gap: "28px" }}>
             {["Somalia", "Africa", "World", "Politics", "Sport", "Business"].map(cat => (
-              <a key={cat} href="#" style={{ color: "#ffffff", textDecoration: "none", fontSize: "14px", fontWeight: "500", letterSpacing: "0.5px" }}>
+              <a key={cat} href="#" style={{ color: "#111111", textDecoration: "none", fontSize: "14px", fontWeight: "600", letterSpacing: "0.5px" }}>
                 {cat}
               </a>
             ))}
           </div>
-          <div style={{ display: "flex", alignItems: "center", background: "#333", borderRadius: "4px", padding: "6px 12px", gap: "8px" }}>
-            <span style={{ color: "#aaa", fontSize: "14px" }}>🔍</span>
-            <input placeholder="Search news..." style={{ background: "transparent", border: "none", outline: "none", color: "#fff", fontSize: "14px", width: "160px" }} />
+
+          {/* Search */}
+          <div style={{ display: "flex", alignItems: "center", background: "#f5f5f5", borderRadius: "4px", padding: "6px 12px", gap: "8px", border: "1px solid #e0e0e0" }}>
+            <span style={{ color: "#999", fontSize: "14px" }}>🔍</span>
+            <input placeholder="Search news..." style={{ background: "transparent", border: "none", outline: "none", color: "#111", fontSize: "14px", width: "160px" }} />
           </div>
         </div>
       </nav>
@@ -102,8 +116,16 @@ export default function Home() {
       <footer style={{ background: "#111111", padding: "40px 0", marginTop: "40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "32px" }}>
           <div>
-            <div style={{ color: "#fff", fontSize: "20px", fontWeight: "bold", marginBottom: "16px" }}>
-              <span style={{ color: "#cc0000" }}>BAIDOA</span> ONLINE
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+              <div style={{ position: "relative", width: "28px", height: "28px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <div style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#cc0000", position: "absolute" }}></div>
+                <div style={{ width: "14px", height: "14px", borderRadius: "50%", border: "1.5px solid #cc0000", opacity: 0.7, position: "absolute" }}></div>
+                <div style={{ width: "24px", height: "24px", borderRadius: "50%", border: "1px solid #cc0000", opacity: 0.35, position: "absolute" }}></div>
+              </div>
+              <div>
+                <div style={{ color: "#ffffff", fontSize: "16px", fontWeight: "900", letterSpacing: "2px", lineHeight: "1" }}>BAIDOA</div>
+                <div style={{ color: "#cc0000", fontSize: "9px", letterSpacing: "6px", lineHeight: "1" }}>ONLINE</div>
+              </div>
             </div>
             <p style={{ color: "#aaa", fontSize: "13px", lineHeight: "1.6" }}>Somalia&apos;s trusted source for breaking news, analysis, and in-depth reporting.</p>
           </div>
