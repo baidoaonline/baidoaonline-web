@@ -402,7 +402,7 @@ export default function Home() {
           </div>
           <div className="footer-bottom">
             <p>© 2026 Baidoa Online. {lang === "so" ? "Xuquuqda oo dhan way ilaalisan yihiin." : "All rights reserved."}</p>
-            <p>Baidoa, Somalia · admin@baidoaonline.com</p>
+            <p>Baidoa, Somalia · admin@baidoaonline.com </p>
           </div>
         </footer>
       </div>
