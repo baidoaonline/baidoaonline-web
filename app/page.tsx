@@ -3,117 +3,217 @@ import { useState } from "react";
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [lang, setLang] = useState<"so" | "en">("so");
+
+  const nav = ["Home", "Wararka", "Adduunka", "Siyaasadda", "Ciyaaraha", "Muuqaallo", "Articles", "English", "Naga Soo Xiriir"];
+
+  const breakingText = {
+    so: "Ciidamada Federaalka oo horumar weyn ka sameeyay koonfurta Soomaaliya · Shirka Xalane oo ku soo idlaaday ballan cusub · Garoonka Baydhabo oo helaya dulimaadyo caalamiya",
+    en: "Federal forces report major advances in southwest Somalia · Xalane talks conclude with new meeting scheduled · Baidoa airport to receive international flights by Q3 2026",
+  };
 
   const articles = [
-    { id: 1, category: "Somalia", title: "Federal Government Announces New Infrastructure Plan for Baidoa Region", time: "2 hours ago", image: "https://placehold.co/400x250/cc0000/ffffff?text=Somalia" },
-    { id: 2, category: "Africa", title: "African Union Summit Addresses Regional Security Challenges Across the Horn", time: "4 hours ago", image: "https://placehold.co/400x250/111111/ffffff?text=Africa" },
-    { id: 3, category: "World", title: "International Aid Organizations Increase Support for Displaced Families", time: "5 hours ago", image: "https://placehold.co/400x250/cc0000/ffffff?text=World" },
-    { id: 4, category: "Politics", title: "Parliamentary Debate Heats Up Over New Electoral Commission Appointments", time: "6 hours ago", image: "https://placehold.co/400x250/111111/ffffff?text=Politics" },
-    { id: 5, category: "Sport", title: "Somali National Football Team Qualifies for CECAFA Championship Finals", time: "8 hours ago", image: "https://placehold.co/400x250/cc0000/ffffff?text=Sport" },
-    { id: 6, category: "Business", title: "New Trade Agreement Opens Market Opportunities for Somali Exporters", time: "10 hours ago", image: "https://placehold.co/400x250/111111/ffffff?text=Business" },
+    { id: 1, cat_so: "Soomaaliya", cat_en: "Somalia", title_so: "Dowladda Federaalka oo shaacisay qorshaha horumarka Baydhabo", title_en: "Federal Government Announces New Infrastructure Plan for Baidoa", time_so: "2 saacadood ka hor", time_en: "2 hours ago", image: "https://placehold.co/400x250/cc0000/ffffff?text=Somalia" },
+    { id: 2, cat_so: "Afrika", cat_en: "Africa", title_so: "Ururka Midowga Afrika oo kulmay si looga wada hadlo amniga gobolka", title_en: "African Union Summit Addresses Regional Security Challenges", time_so: "4 saacadood ka hor", time_en: "4 hours ago", image: "https://placehold.co/400x250/333333/ffffff?text=Africa" },
+    { id: 3, cat_so: "Adduunka", cat_en: "World", title_so: "Hay'adaha caalamiga ah oo kordhisay gargaarka qoysaska barakacay", title_en: "International Aid Organizations Increase Support for Displaced Families", time_so: "5 saacadood ka hor", time_en: "5 hours ago", image: "https://placehold.co/400x250/cc0000/ffffff?text=World" },
+    { id: 4, cat_so: "Siyaasadda", cat_en: "Politics", title_so: "Baarlamaanka oo dood kulul ka yeeshay xubnaha Gudiga Doorashooyinka", title_en: "Parliamentary Debate Heats Up Over Electoral Commission Appointments", time_so: "6 saacadood ka hor", time_en: "6 hours ago", image: "https://placehold.co/400x250/333333/ffffff?text=Politics" },
+    { id: 5, cat_so: "Ciyaaraha", cat_en: "Sport", title_so: "Kooxda Kubbadda Cagta Soomaaliya oo u gudubtay heer CECAFA", title_en: "Somali National Football Team Qualifies for CECAFA Championship", time_so: "8 saacadood ka hor", time_en: "8 hours ago", image: "https://placehold.co/400x250/cc0000/ffffff?text=Sport" },
+    { id: 6, cat_so: "Ganacsiga", cat_en: "Business", title_so: "Heshiis ganacsiga cusub oo furaya fursado cusub", title_en: "New Trade Agreement Opens Market Opportunities for Somali Exporters", time_so: "10 saacadood ka hor", time_en: "10 hours ago", image: "https://placehold.co/400x250/333333/ffffff?text=Business" },
   ];
 
   return (
     <>
       <style>{`
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; background: #fff; color: #111; }
-        a { text-decoration: none; }
+        body { font-family: Arial, sans-serif; background: #f7f7f7; color: #111; }
+        a { text-decoration: none; color: inherit; }
 
-        .top-bar { background: #cc0000; padding: 6px 16px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2px; }
-        .top-bar span { color: #fff; font-size: 11px; }
+        .topbar { background: #f0f0f0; border-bottom: 1px solid #ddd; padding: 5px 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 4px; }
+        .topbar-date { color: #555; font-size: 12px; }
+        .topbar-social { display: flex; gap: 12px; }
+        .topbar-social a { color: #555; font-size: 12px; font-weight: 600; }
+        .topbar-social a:hover { color: #cc0000; }
+        .lang-toggle { display: flex; border: 1px solid #ccc; border-radius: 20px; overflow: hidden; }
+        .lang-btn { padding: 4px 12px; font-size: 11px; font-weight: 700; cursor: pointer; border: none; }
+        .lang-btn.active { background: #cc0000; color: #fff; }
+        .lang-btn.inactive { background: transparent; color: #555; }
 
-        .navbar { background: #fff; border-bottom: 3px solid #cc0000; box-shadow: 0 2px 6px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 100; }
-        .navbar-inner { max-width: 1200px; margin: 0 auto; padding: 0 16px; display: flex; justify-content: space-between; align-items: center; height: 64px; }
-        .logo { display: flex; align-items: center; gap: 12px; }
-        .logo-icon { position: relative; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .logo-dot { width: 10px; height: 10px; border-radius: 50%; background: #cc0000; position: absolute; }
-        .logo-ring1 { width: 22px; height: 22px; border-radius: 50%; border: 2.5px solid #cc0000; opacity: 0.7; position: absolute; }
-        .logo-ring2 { width: 36px; height: 36px; border-radius: 50%; border: 2px solid #cc0000; opacity: 0.3; position: absolute; }
-        .logo-text-main { color: #111; font-size: 22px; font-weight: 900; letter-spacing: 3px; line-height: 1; }
-        .logo-text-sub { color: #cc0000; font-size: 10px; font-weight: 600; letter-spacing: 7px; line-height: 1.4; }
+        .navbar { background: #fff; border-bottom: 1px solid #e0e0e0; box-shadow: 0 1px 4px rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 100; }
+        .navbar-inner { max-width: 1200px; margin: 0 auto; padding: 0 16px; display: flex; justify-content: space-between; align-items: center; }
+        .logo-wrap { display: flex; align-items: center; gap: 12px; padding: 12px 0; }
+        .logo-icon { position: relative; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .logo-dot { width: 9px; height: 9px; border-radius: 50%; background: #cc0000; position: absolute; }
+        .logo-ring1 { width: 20px; height: 20px; border-radius: 50%; border: 2px solid #cc0000; opacity: 0.7; position: absolute; }
+        .logo-ring2 { width: 33px; height: 33px; border-radius: 50%; border: 1.5px solid #cc0000; opacity: 0.3; position: absolute; }
+        .logo-text-main { color: #111; font-size: 22px; font-weight: 900; letter-spacing: 2px; line-height: 1; }
+        .logo-text-sub { color: #cc0000; font-size: 9px; font-weight: 700; letter-spacing: 7px; line-height: 1.5; }
 
-        .desktop-nav { display: flex; gap: 24px; }
-        .desktop-nav a { color: #111; font-size: 14px; font-weight: 600; }
-        .desktop-nav a:hover { color: #cc0000; }
+        .desktop-nav { display: flex; }
+        .desktop-nav a { color: #333; font-size: 12px; font-weight: 600; padding: 18px 9px; display: block; border-bottom: 3px solid transparent; white-space: nowrap; }
+        .desktop-nav a:hover { color: #cc0000; border-bottom: 3px solid #cc0000; }
+
+        .nav-search { display: flex; align-items: center; background: #f5f5f5; border: 1px solid #e0e0e0; border-radius: 20px; padding: 6px 14px; gap: 6px; }
+        .nav-search input { background: transparent; border: none; outline: none; color: #333; font-size: 12px; width: 110px; }
 
         .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; flex-direction: column; gap: 5px; }
-        .hamburger span { display: block; width: 24px; height: 2px; background: #111; border-radius: 2px; }
+        .hamburger span { display: block; width: 22px; height: 2px; background: #333; border-radius: 2px; }
 
-        .mobile-menu { display: none; background: #fff; border-top: 1px solid #eee; padding: 8px 16px 16px; }
+        .mobile-menu { display: none; background: #fff; border-top: 1px solid #eee; }
         .mobile-menu.open { display: block; }
-        .mobile-menu a { display: block; color: #111; font-size: 15px; font-weight: 600; padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
-        .mobile-search { margin-top: 12px; display: flex; align-items: center; background: #f5f5f5; border-radius: 4px; padding: 8px 12px; gap: 8px; }
-        .mobile-search input { background: transparent; border: none; outline: none; color: #111; font-size: 14px; width: 100%; }
+        .mobile-menu a { display: block; color: #333; font-size: 15px; font-weight: 600; padding: 12px 16px; border-bottom: 1px solid #f5f5f5; }
+        .mobile-search { margin: 12px 16px 16px; display: flex; align-items: center; background: #f5f5f5; border-radius: 20px; padding: 8px 14px; gap: 8px; }
+        .mobile-search input { background: transparent; border: none; outline: none; font-size: 14px; width: 100%; }
 
-        .breaking { background: #f5f5f5; border-bottom: 2px solid #cc0000; padding: 8px 16px; display: flex; align-items: flex-start; gap: 10px; }
-        .breaking-label { background: #cc0000; color: #fff; padding: 2px 8px; font-size: 11px; font-weight: bold; border-radius: 2px; white-space: nowrap; margin-top: 2px; }
-        .breaking-text { font-size: 12px; color: #333; line-height: 1.5; }
+        .breaking { background: #fff; border-top: 3px solid #cc0000; border-bottom: 1px solid #eee; padding: 8px 16px; display: flex; align-items: center; gap: 12px; overflow: hidden; }
+        .breaking-label { background: #cc0000; color: #fff; padding: 3px 12px; font-size: 11px; font-weight: 900; border-radius: 3px; white-space: nowrap; letter-spacing: 1px; flex-shrink: 0; }
+        .breaking-text { font-size: 13px; color: #222; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+        .page-wrap { max-width: 1200px; margin: 20px auto; padding: 0 16px; }
 
-        .hero { padding: 24px 16px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 24px; }
-        .hero-image { width: 100%; border-radius: 4px; display: block; }
-        .hero-category { background: #cc0000; color: #fff; padding: 3px 10px; font-size: 11px; font-weight: bold; border-radius: 2px; display: inline-block; margin-top: 14px; }
-        .hero-title { font-size: 22px; font-weight: bold; line-height: 1.3; margin-top: 10px; color: #111; }
-        .hero-desc { color: #555; font-size: 14px; margin-top: 8px; line-height: 1.6; }
-        .hero-meta { color: #999; font-size: 12px; margin-top: 6px; display: block; }
+        /* HERO */
+        .hero-section { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 24px; }
+        .hero-main { position: relative; border-radius: 8px; overflow: hidden; cursor: pointer; }
+        .hero-main img { width: 100%; height: 460px; object-fit: cover; display: block; }
 
-        .side-articles { display: flex; flex-direction: column; gap: 16px; }
-        .side-article { display: flex; gap: 12px; padding-bottom: 16px; border-bottom: 1px solid #eee; cursor: pointer; }
-        .side-article img { width: 90px; height: 65px; object-fit: cover; border-radius: 3px; flex-shrink: 0; }
-        .side-article-cat { color: #cc0000; font-size: 11px; font-weight: bold; }
-        .side-article-title { font-size: 13px; font-weight: 600; line-height: 1.4; margin-top: 3px; color: #111; }
-        .side-article-time { color: #999; font-size: 11px; }
-
-        .section-label { background: #cc0000; padding: 10px 16px; }
-        .section-label h2 { max-width: 1200px; margin: 0 auto; color: #fff; font-size: 14px; font-weight: bold; letter-spacing: 1px; }
-
-        .article-grid { max-width: 1200px; margin: 24px auto; padding: 0 16px; display: grid; grid-template-columns: 1fr; gap: 24px; }
-        .article-card { cursor: pointer; border-bottom: 2px solid #eee; padding-bottom: 16px; }
-        .article-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 3px; }
-        .article-cat { color: #cc0000; font-size: 11px; font-weight: bold; letter-spacing: 0.5px; display: block; margin-top: 10px; }
-        .article-title { font-size: 16px; font-weight: bold; line-height: 1.4; margin-top: 6px; color: #111; }
-        .article-time { color: #999; font-size: 12px; margin-top: 6px; display: block; }
-
-        .footer { background: #111; padding: 32px 16px; margin-top: 32px; }
-        .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-        .footer-logo-text-main { color: #fff; font-size: 16px; font-weight: 900; letter-spacing: 2px; line-height: 1; }
-        .footer-logo-text-sub { color: #cc0000; font-size: 9px; letter-spacing: 5px; }
-        .footer-desc { color: #aaa; font-size: 12px; line-height: 1.6; margin-top: 8px; }
-        .footer-col h4 { color: #cc0000; font-size: 12px; font-weight: bold; letter-spacing: 1px; margin-bottom: 12px; }
-        .footer-col a { display: block; color: #aaa; font-size: 12px; margin-bottom: 8px; }
-        .footer-col a:hover { color: #fff; }
-        .footer-bottom { max-width: 1200px; margin: 24px auto 0; padding-top: 16px; border-top: 1px solid #333; text-align: center; }
-        .footer-bottom p { color: #666; font-size: 11px; }
-
-        @media (min-width: 768px) {
-          .hamburger { display: none !important; }
-          .desktop-nav { display: flex !important; }
-          .hero { grid-template-columns: 2fr 1fr; }
-          .hero-title { font-size: 28px; }
-          .article-grid { grid-template-columns: repeat(3, 1fr); }
-          .footer-grid { grid-template-columns: repeat(4, 1fr); }
+        /* Breaking news badge on hero */
+        .hero-breaking-badge {
+          position: absolute;
+          top: 16px;
+          left: 16px;
+          background: #cc0000;
+          color: #fff;
+          padding: 6px 16px;
+          font-size: 13px;
+          font-weight: 900;
+          border-radius: 4px;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .blink-dot {
+          width: 8px;
+          height: 8px;
+          background: #fff;
+          border-radius: 50%;
+          animation: blink 1s infinite;
+          flex-shrink: 0;
+        }
+        @keyframes blink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
         }
 
-        @media (max-width: 767px) {
+        .hero-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 24px; background: linear-gradient(transparent 0%, rgba(0,0,0,0.5) 20%, rgba(0,0,0,0.92) 100%); }
+        .hero-cat { background: #cc0000; color: #fff; padding: 3px 10px; font-size: 11px; font-weight: 900; border-radius: 3px; display: inline-block; margin-bottom: 10px; letter-spacing: 1px; }
+        .hero-title { color: #fff; font-size: 26px; font-weight: 900; line-height: 1.3; margin-bottom: 8px; }
+        .hero-desc { color: rgba(255,255,255,0.88); font-size: 14px; line-height: 1.6; margin-bottom: 8px; }
+        .hero-meta { color: rgba(255,255,255,0.6); font-size: 12px; }
+
+        .hero-side { display: flex; flex-direction: column; background: #fff; border-radius: 8px; overflow: hidden; border: 1px solid #eee; }
+        .hero-side-item { display: flex; gap: 12px; padding: 14px; border-bottom: 1px solid #f0f0f0; cursor: pointer; }
+        .hero-side-item:last-child { border-bottom: none; }
+        .hero-side-item:hover { background: #fafafa; }
+        .hero-side-item img { width: 85px; height: 62px; object-fit: cover; border-radius: 4px; flex-shrink: 0; }
+        .side-cat { color: #cc0000; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; }
+        .side-title { font-size: 13px; font-weight: 700; line-height: 1.4; margin-top: 3px; color: #111; }
+        .side-time { color: #999; font-size: 11px; margin-top: 3px; }
+
+        .content-sidebar { display: grid; grid-template-columns: 1fr; gap: 20px; }
+
+        .news-section { background: #fff; border-radius: 8px; padding: 20px; border: 1px solid #eee; }
+        .section-hdr { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 2px solid #f0f0f0; }
+        .section-hdr-bar { width: 4px; height: 20px; background: #cc0000; border-radius: 2px; flex-shrink: 0; }
+        .section-hdr h2 { font-size: 15px; font-weight: 900; color: #111; letter-spacing: 0.5px; }
+
+        .article-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+        .article-card { cursor: pointer; }
+        .article-card img { width: 100%; height: 160px; object-fit: cover; border-radius: 4px; display: block; }
+        .article-card:hover img { opacity: 0.88; }
+        .a-cat { color: #cc0000; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; display: block; margin-top: 10px; text-transform: uppercase; }
+        .a-title { font-size: 14px; font-weight: 700; line-height: 1.4; margin-top: 5px; color: #111; }
+        .a-time { color: #999; font-size: 11px; margin-top: 5px; display: block; }
+
+        .sidebar { display: flex; flex-direction: column; gap: 16px; }
+        .sb-box { background: #fff; border-radius: 8px; border: 1px solid #eee; overflow: hidden; }
+        .sb-hdr { font-size: 12px; font-weight: 900; color: #111; background: #f8f8f8; padding: 10px 14px; letter-spacing: 1px; border-bottom: 2px solid #cc0000; }
+        .sb-body { padding: 0 14px; }
+
+        .social-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #f5f5f5; }
+        .social-row:last-child { border-bottom: none; }
+        .s-icon { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 900; color: #fff; flex-shrink: 0; }
+        .s-info { flex: 1; }
+        .s-name { font-size: 13px; font-weight: 700; color: #111; }
+        .s-count { font-size: 11px; color: #888; }
+        .s-btn { background: #f0f0f0; color: #333; padding: 5px 12px; border-radius: 4px; font-size: 11px; font-weight: 700; cursor: pointer; border: 1px solid #ddd; white-space: nowrap; }
+        .s-btn:hover { background: #cc0000; color: #fff; border-color: #cc0000; }
+
+        .trend-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #f5f5f5; cursor: pointer; }
+        .trend-item:last-child { border-bottom: none; }
+        .trend-num { font-size: 22px; font-weight: 900; color: #e8e8e8; min-width: 28px; line-height: 1.1; }
+        .trend-title { font-size: 13px; font-weight: 600; color: #111; line-height: 1.4; }
+        .trend-title:hover { color: #cc0000; }
+        .trend-time { font-size: 11px; color: #aaa; margin-top: 3px; }
+
+        .must-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #f5f5f5; cursor: pointer; align-items: center; }
+        .must-item:last-child { border-bottom: none; }
+        .must-item img { width: 70px; height: 52px; object-fit: cover; border-radius: 4px; flex-shrink: 0; }
+        .must-title { font-size: 13px; font-weight: 600; color: #111; line-height: 1.4; }
+        .must-title:hover { color: #cc0000; }
+
+        .footer { background: #1a1a1a; padding: 36px 16px 20px; margin-top: 32px; }
+        .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 28px; }
+        .f-logo-main { color: #fff; font-size: 18px; font-weight: 900; letter-spacing: 2px; }
+        .f-logo-sub { color: #cc0000; font-size: 9px; letter-spacing: 5px; margin-bottom: 10px; }
+        .f-desc { color: #888; font-size: 12px; line-height: 1.7; }
+        .f-col h4 { color: #fff; font-size: 12px; font-weight: 900; letter-spacing: 1px; margin-bottom: 14px; text-transform: uppercase; border-bottom: 1px solid #333; padding-bottom: 8px; }
+        .f-col a { display: block; color: #888; font-size: 12px; margin-bottom: 9px; }
+        .f-col a:hover { color: #cc0000; }
+        .footer-bottom { max-width: 1200px; margin: 24px auto 0; padding-top: 16px; border-top: 1px solid #2a2a2a; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+        .footer-bottom p { color: #555; font-size: 11px; }
+
+        @media (min-width: 900px) {
+          .hamburger { display: none !important; }
+          .desktop-nav { display: flex !important; }
+          .hero-section { grid-template-columns: 2fr 1fr; }
+          .content-sidebar { grid-template-columns: 2fr 1fr; }
+          .hero-main img { height: 500px; }
+        }
+        @media (max-width: 899px) {
           .desktop-nav { display: none !important; }
+          .nav-search { display: none !important; }
           .hamburger { display: flex !important; }
+          .hero-main img { height: 260px; }
+          .hero-title { font-size: 18px !important; }
+          .hero-desc { display: none; }
+          .topbar-date { display: none; }
         }
       `}</style>
 
-      <div style={{ minHeight: "100vh", background: "#fff" }}>
+      <div style={{ minHeight: "100vh" }}>
 
-        {/* Top bar */}
-        <div className="top-bar">
-          <span>📍 Baidoa, Somalia — May 13, 2026</span>
-          <span>X · Facebook · YouTube</span>
+        {/* TOP BAR */}
+        <div className="topbar">
+          <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+            <span className="topbar-date">📅 Wednesday, May 13, 2026</span>
+            <div className="topbar-social">
+              <a href="https://facebook.com" target="_blank" rel="noreferrer">Facebook</a>
+              <a href="https://x.com/BaidoaOnline" target="_blank" rel="noreferrer">X</a>
+              <a href="https://youtube.com" target="_blank" rel="noreferrer">YouTube</a>
+            </div>
+          </div>
+          <div className="lang-toggle">
+            <button className={`lang-btn ${lang === "so" ? "active" : "inactive"}`} onClick={() => setLang("so")}>🇸🇴 SO</button>
+            <button className={`lang-btn ${lang === "en" ? "active" : "inactive"}`} onClick={() => setLang("en")}>🇬🇧 EN</button>
+          </div>
         </div>
 
-        {/* Navbar */}
+        {/* NAVBAR */}
         <nav className="navbar">
           <div className="navbar-inner">
-            <div className="logo">
+            <a href="/" className="logo-wrap">
               <div className="logo-icon">
                 <div className="logo-dot"></div>
                 <div className="logo-ring1"></div>
@@ -123,110 +223,188 @@ export default function Home() {
                 <div className="logo-text-main">BAIDOA</div>
                 <div className="logo-text-sub">ONLINE</div>
               </div>
-            </div>
-
+            </a>
             <div className="desktop-nav">
-              {["Somalia", "Africa", "World", "Politics", "Sport", "Business"].map(cat => (
-                <a key={cat} href="#">{cat}</a>
-              ))}
+              {nav.map(item => <a key={item} href="#">{item}</a>)}
             </div>
-
+            <div className="nav-search">
+              <span style={{ color: "#999" }}>🔍</span>
+              <input placeholder={lang === "so" ? "Raadi wararka..." : "Search news..."} />
+            </div>
             <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
               <span></span><span></span><span></span>
             </button>
           </div>
-
           <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
-            {["Somalia", "Africa", "World", "Politics", "Sport", "Business"].map(cat => (
-              <a key={cat} href="#" onClick={() => setMenuOpen(false)}>{cat}</a>
-            ))}
+            {nav.map(item => <a key={item} href="#" onClick={() => setMenuOpen(false)}>{item}</a>)}
             <div className="mobile-search">
               <span>🔍</span>
-              <input placeholder="Search news..." />
+              <input placeholder={lang === "so" ? "Raadi wararka..." : "Search news..."} />
             </div>
           </div>
         </nav>
 
-        {/* Breaking */}
+        {/* BREAKING TICKER */}
         <div className="breaking">
-          <span className="breaking-label">BREAKING</span>
-          <span className="breaking-text">Federal forces report major advances in southwest Somalia · AU extends peacekeeping mission · Baidoa airport to receive international flights by Q3 2026</span>
+          <span className="breaking-label">{lang === "so" ? "WAR DEGDEG AH" : "BREAKING"}</span>
+          <span className="breaking-text">{breakingText[lang]}</span>
         </div>
 
-        {/* Hero */}
-        <div className="hero">
-          <div>
-            <img className="hero-image" src="https://placehold.co/800x450/cc0000/ffffff?text=Top+Story" alt="Top Story" />
-            <span className="hero-category">SOMALIA</span>
-            <h1 className="hero-title">Historic Peace Talks Begin in Baidoa as Regional Leaders Gather for Three-Day Summit</h1>
-            <p className="hero-desc">Senior officials from across the region convened in Baidoa today to discuss a comprehensive framework for lasting peace and regional stability in Southwest Somalia.</p>
-            <span className="hero-meta">1 hour ago · By Baidoa Online Staff</span>
+        <div className="page-wrap">
+
+          {/* HERO */}
+          <div className="hero-section">
+            <div className="hero-main">
+              <img
+                src="/news1.jpg"
+                alt="Shirka Xalane"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "https://placehold.co/900x500/cc0000/ffffff?text=Baidoa+Online";
+                }}
+              />
+
+              {/* Breaking News Badge */}
+              <div className="hero-breaking-badge">
+                <div className="blink-dot"></div>
+                {lang === "so" ? "WAR DEGDEG AH" : "BREAKING NEWS"}
+              </div>
+
+              <div className="hero-overlay">
+                <span className="hero-cat">{lang === "so" ? "Siyaasadda" : "Politics"}</span>
+                <h1 className="hero-title">
+                  {lang === "so"
+                    ? "Maxaa kasoo baxay shirkii maanta Xalane uga furmay Dowladda iyo Mucaaradka?"
+                    : "What came out of today's Xalane talks between the Government and Opposition?"}
+                </h1>
+                <p className="hero-desc">
+                  {lang === "so"
+                    ? "MUQDISHO, Baidoa Online — Waxaa soo idlaaday shirkii maanta Muqdisho gaar ahaan Xerada Xalane ugaga furmay Dowladda Soomaaliya iyo xubno ka tirsan Mucaaradka."
+                    : "MOGADISHU, Baidoa Online — Talks concluded today at Xalane camp in Mogadishu between the Somali Government and opposition members."}
+                </p>
+                <span className="hero-meta">13 May 2026 · Baidoa Online</span>
+              </div>
+            </div>
+
+            <div className="hero-side">
+              {articles.slice(0, 4).map(a => (
+                <div key={a.id} className="hero-side-item">
+                  <img src={a.image} alt="" />
+                  <div>
+                    <div className="side-cat">{lang === "so" ? a.cat_so : a.cat_en}</div>
+                    <div className="side-title">{lang === "so" ? a.title_so : a.title_en}</div>
+                    <div className="side-time">{lang === "so" ? a.time_so : a.time_en}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div className="side-articles">
-            {articles.slice(0, 3).map(article => (
-              <div key={article.id} className="side-article">
-                <img src={article.image} alt={article.title} />
-                <div>
-                  <div className="side-article-cat">{article.category}</div>
-                  <div className="side-article-title">{article.title}</div>
-                  <div className="side-article-time">{article.time}</div>
+          {/* CONTENT + SIDEBAR */}
+          <div className="content-sidebar">
+            <div className="news-section">
+              <div className="section-hdr">
+                <div className="section-hdr-bar"></div>
+                <h2>{lang === "so" ? "WARARKA UGU DAMBEEYAY" : "LATEST NEWS"}</h2>
+              </div>
+              <div className="article-grid">
+                {articles.map(a => (
+                  <div key={a.id} className="article-card">
+                    <img src={a.image} alt="" />
+                    <span className="a-cat">{lang === "so" ? a.cat_so : a.cat_en}</span>
+                    <div className="a-title">{lang === "so" ? a.title_so : a.title_en}</div>
+                    <span className="a-time">{lang === "so" ? a.time_so : a.time_en}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="sidebar">
+              <div className="sb-box">
+                <div className="sb-hdr">STAY CONNECTED</div>
+                <div className="sb-body">
+                  {[
+                    { name: "Facebook", count: "12,400 Fans", color: "#1877f2", icon: "f", link: "https://facebook.com" },
+                    { name: "X (Twitter)", count: "13,200 Followers", color: "#000", icon: "𝕏", link: "https://x.com/BaidoaOnline" },
+                    { name: "YouTube", count: "8,500 Subs", color: "#ff0000", icon: "▶", link: "https://youtube.com" },
+                  ].map(s => (
+                    <div key={s.name} className="social-row">
+                      <div className="s-icon" style={{ background: s.color }}>{s.icon}</div>
+                      <div className="s-info">
+                        <div className="s-name">{s.name}</div>
+                        <div className="s-count">{s.count}</div>
+                      </div>
+                      <a href={s.link} target="_blank" rel="noreferrer">
+                        <button className="s-btn">FOLLOW</button>
+                      </a>
+                    </div>
+                  ))}
                 </div>
               </div>
-            ))}
+
+              <div className="sb-box">
+                <div className="sb-hdr">TRENDING NOW</div>
+                <div className="sb-body">
+                  {articles.slice(0, 4).map((a, i) => (
+                    <div key={a.id} className="trend-item">
+                      <div className="trend-num">0{i + 1}</div>
+                      <div>
+                        <div className="trend-title">{lang === "so" ? a.title_so : a.title_en}</div>
+                        <div className="trend-time">{lang === "so" ? a.time_so : a.time_en}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="sb-box">
+                <div className="sb-hdr">MUST READ</div>
+                <div className="sb-body">
+                  {articles.slice(0, 3).map(a => (
+                    <div key={a.id} className="must-item">
+                      <img src={a.image} alt="" />
+                      <div className="must-title">{lang === "so" ? a.title_so : a.title_en}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Latest news */}
-        <div className="section-label">
-          <h2>LATEST NEWS</h2>
-        </div>
-
-        {/* Article grid */}
-        <div className="article-grid">
-          {articles.map(article => (
-            <div key={article.id} className="article-card">
-              <img src={article.image} alt={article.title} />
-              <span className="article-cat">{article.category}</span>
-              <div className="article-title">{article.title}</div>
-              <span className="article-time">{article.time}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Footer */}
+        {/* FOOTER */}
         <footer className="footer">
-          <div className="footer-grid">
+          <div className="footer-inner">
             <div>
-              <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
-                <div style={{ position: "relative", width: "28px", height: "28px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "6px" }}>
+                <div style={{ position: "relative", width: "26px", height: "26px", display: "flex", alignItems: "center", justifyContent: "center" }}>
                   <div style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#cc0000", position: "absolute" }}></div>
                   <div style={{ width: "14px", height: "14px", borderRadius: "50%", border: "1.5px solid #cc0000", opacity: 0.7, position: "absolute" }}></div>
-                  <div style={{ width: "24px", height: "24px", borderRadius: "50%", border: "1px solid #cc0000", opacity: 0.35, position: "absolute" }}></div>
+                  <div style={{ width: "22px", height: "22px", borderRadius: "50%", border: "1px solid #cc0000", opacity: 0.35, position: "absolute" }}></div>
                 </div>
                 <div>
-                  <div className="footer-logo-text-main">BAIDOA</div>
-                  <div className="footer-logo-text-sub">ONLINE</div>
+                  <div className="f-logo-main">BAIDOA</div>
+                  <div className="f-logo-sub">ONLINE</div>
                 </div>
               </div>
-              <p className="footer-desc">Somalia&apos;s trusted source for breaking news and in-depth reporting.</p>
+              <p className="f-desc">{lang === "so" ? "Ilo wareedka ugu la-aamin badan ee Soomaaliya." : "Somalia's most trusted news source."}</p>
+              <p style={{ color: "#666", fontSize: "12px", marginTop: "8px" }}>📧 admin@baidoaonline.com</p>
             </div>
             {[
-              { title: "Sections", links: ["Somalia", "Africa", "World", "Politics"] },
-              { title: "More", links: ["Sport", "Business", "Opinion", "About Us"] },
-              { title: "Follow Us", links: ["X (Twitter)", "Facebook", "YouTube", "Contact"] },
+              { title: "Sections", links: lang === "so" ? ["Soomaaliya", "Afrika", "Adduunka", "Siyaasadda"] : ["Somalia", "Africa", "World", "Politics"] },
+              { title: "More", links: lang === "so" ? ["Ciyaaraha", "Ganacsiga", "Maqaallo", "Naga Waydii"] : ["Sport", "Business", "Articles", "About Us"] },
+              { title: "Contact", links: ["admin@baidoaonline.com", "X (Twitter)", "Facebook", "YouTube"] },
             ].map(col => (
-              <div key={col.title} className="footer-col">
-                <h4>{col.title.toUpperCase()}</h4>
+              <div key={col.title} className="f-col">
+                <h4>{col.title}</h4>
                 {col.links.map(link => <a key={link} href="#">{link}</a>)}
               </div>
             ))}
           </div>
           <div className="footer-bottom">
-            <p>© 2026 Baidoa Online. All rights reserved.</p>
+            <p>© 2026 Baidoa Online. {lang === "so" ? "Xuquuqda oo dhan way ilaalisan yihiin." : "All rights reserved."}</p>
+            <p>Baidoa, Somalia · admin@baidoaonline.com</p>
           </div>
         </footer>
-
       </div>
     </>
   );
