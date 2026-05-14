@@ -1,6 +1,4 @@
 import { client, urlFor } from '@/lib/sanity'
-import { groq } from 'next-sanity'
-
 import { notFound } from 'next/navigation'
 
 export const revalidate = 60
@@ -21,15 +19,18 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   const categoryTitle = categoryMap[slug.toLowerCase()]
   if (!categoryTitle) return notFound()
 
-  const posts = await client.fetch(groq`
-    *[_type == "post" && references(*[_type == "category" && title == $categoryTitle]._id)] | order(publishedAt desc) {
+  const posts = await client.fetch(
+    `*[_type == "post" && references(*[_type == "category" && title == $cat]._id)] | order(publishedAt desc) {
       _id, title, titleEn, slug, mainImage, publishedAt, isBreaking,
       "category": categories[0]->title
-    }
-  `, { categoryTitle })
+    }`,
+    { cat: categoryTitle }
+  )
 
   function getImage(post: any) {
-    if (post?.mainImage) return urlFor(post.mainImage).width(600).url()
+    try {
+      if (post?.mainImage) return urlFor(post.mainImage).width(600).url()
+    } catch {}
     return 'https://placehold.co/400x250/cc0000/ffffff?text=Baidoa+Online'
   }
 
@@ -63,7 +64,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         .back-link { color: #cc0000; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 20px; }
         .back-link:hover { text-decoration: underline; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
-        .card { background: #fff; border-radius: 8px; overflow: hidden; border: 1px solid #eee; cursor: pointer; transition: box-shadow 0.15s; }
+        .card { background: #fff; border-radius: 8px; overflow: hidden; border: 1px solid #eee; cursor: pointer; transition: box-shadow 0.15s; display: block; }
         .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
         .card img { width: 100%; height: 180px; object-fit: cover; display: block; }
         .card-body { padding: 14px; }
@@ -98,7 +99,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         <a href="/" className="back-link">← Bogga Hore</a>
         <div className="cat-header">
           <h1>{categoryTitle.toUpperCase()}</h1>
-          <span className="cat-count">{posts.length} article{posts.length !== 1 ? 's' : ''}</span>
+          <span className="cat-count">{posts.length} articles</span>
         </div>
 
         {posts.length === 0 ? (
