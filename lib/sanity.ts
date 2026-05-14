@@ -17,7 +17,7 @@ export function urlFor(source: any) {
 
 export async function getPosts() {
   return await client.fetch(`
-    *[_type == "post"] | order(publishedAt desc) {
+    *[_type == "post"] | order(publishedAt desc, _createdAt desc) {
       _id,
       title,
       slug,
