@@ -108,7 +108,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
                 <img
                   src={post.imageUrl || 'https://placehold.co/400x250/cc0000/fff?text=News'}
                   alt={post.title}
-                  onError={(e) => { (e.target as HTMLImageElement).src = 'https://placehold.co/400x250/cc0000/fff?text=News' }}
+                  
                 />
                 <div className="card-body">
                   {post.isBreaking && <div className="breaking-badge">WAR DEGDEG AH</div>}
