@@ -113,7 +113,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
                 <div className="card-body">
                   {post.isBreaking && <div className="breaking-badge">WAR DEGDEG AH</div>}
                   <div className="card-cat">{post.category}</div>
-                  <div className="card-title">{post.title}</div>
+                  <div className="card-title">{post.titleEn || post.title}</div>
                   <div className="card-time">{timeAgo(post.publishedAt)}</div>
                 </div>
               </a>
