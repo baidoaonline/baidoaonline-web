@@ -6,22 +6,17 @@ export default function HomeClient({ posts }: { posts: any[] }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [lang, setLang] = useState<"so" | "en">("so");
 
-  const nav = ["Home", "Wararka", "Adduunka", "Siyaasadda", "Ciyaaraha", "Muuqaallo", "Articles", "English", "Naga Soo Xiriir"];
-
-  const breakingNewsItems = posts.filter((p: any) => p.isBreaking);
-  const breakingTicker = breakingNewsItems.length > 0
-    ? breakingNewsItems.map((p: any) => lang === "en" && p.titleEn ? p.titleEn : p.title).join(" · ")
-    : lang === "so" ? "Baidoa Online - Wararka ugu dambeeyay" : "Baidoa Online - Latest News";
-  // legacy fallback
-  const breakingItems = posts.filter((p: any) => p.isBreaking);
-  const breakingTicker = breakingItems.length > 0
-    ? breakingItems.map((p: any) => lang === "en" && p.titleEn ? p.titleEn : p.title).join(" · ")
-    : posts.slice(0, 5).map((p: any) => lang === "en" && p.titleEn ? p.titleEn : p.title).join(" · ");
-  // legacy
-  const breakingText = {
-    so: "Ciidamada Federaalka oo horumar weyn ka sameeyay koonfurta Soomaaliya · Shirka Xalane oo ku soo idlaaday ballan cusub · Garoonka Baydhabo oo helaya dulimaadyo caalamiya",
-    en: "Federal forces report major advances in southwest Somalia · Xalane talks conclude with new meeting scheduled · Baidoa airport to receive international flights by Q3 2026",
-  };
+  const nav = [
+    { label: "Home", href: "/" },
+    { label: "Wararka", href: "/category/wararka" },
+    { label: "Adduunka", href: "/category/adduunka" },
+    { label: "Siyaasadda", href: "/category/siyaasadda" },
+    { label: "Ciyaaraha", href: "/category/ciyaaraha" },
+    { label: "Muuqaallo", href: "/category/muuqaallo" },
+    { label: "Articles", href: "/category/articles" },
+    { label: "English", href: "/category/english" },
+    { label: "Naga Soo Xiriir", href: "/contact" },
+  ];
 
   const hero = posts[0];
   const sideArticles = posts.slice(1, 5);
@@ -41,6 +36,15 @@ export default function HomeClient({ posts }: { posts: any[] }) {
     const d = Math.floor(h / 24);
     return lang === "so" ? `${d} maalmood ka hor` : `${d} days ago`;
   }
+
+  function getTitle(post: any) {
+    return lang === "en" && post.titleEn ? post.titleEn : post.title;
+  }
+
+  const breakingItems = posts.filter((p: any) => p.isBreaking);
+  const breakingTicker = breakingItems.length > 0
+    ? breakingItems.map((p: any) => getTitle(p)).join(" · ")
+    : posts.slice(0, 5).map((p: any) => getTitle(p)).join(" · ");
 
   return (
     <>
@@ -91,7 +95,6 @@ export default function HomeClient({ posts }: { posts: any[] }) {
         .hero-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 24px; background: linear-gradient(transparent 0%, rgba(0,0,0,0.5) 20%, rgba(0,0,0,0.92) 100%); }
         .hero-cat { background: #cc0000; color: #fff; padding: 3px 10px; font-size: 11px; font-weight: 900; border-radius: 3px; display: inline-block; margin-bottom: 10px; letter-spacing: 1px; }
         .hero-title { color: #fff; font-size: 26px; font-weight: 900; line-height: 1.3; margin-bottom: 8px; }
-        .hero-desc { color: rgba(255,255,255,0.88); font-size: 14px; line-height: 1.6; margin-bottom: 8px; }
         .hero-meta { color: rgba(255,255,255,0.6); font-size: 12px; }
         .hero-side { display: flex; flex-direction: column; background: #fff; border-radius: 8px; overflow: hidden; border: 1px solid #eee; }
         .hero-side-item { display: flex; gap: 12px; padding: 14px; border-bottom: 1px solid #f0f0f0; cursor: pointer; transition: background 0.15s; }
@@ -160,7 +163,6 @@ export default function HomeClient({ posts }: { posts: any[] }) {
           .hamburger { display: flex !important; }
           .hero-main img { height: 260px; }
           .hero-title { font-size: 18px !important; }
-          .hero-desc { display: none; }
           .topbar-date { display: none; }
         }
       `}</style>
@@ -197,7 +199,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
               </div>
             </a>
             <div className="desktop-nav">
-              {nav.map(item => <a key={item} href={item === 'Home' ? '/' : `/category/${item.toLowerCase().replace(/ /g, '-')}`}>{item}</a>)}
+              {nav.map(item => <a key={item.label} href={item.href}>{item.label}</a>)}
             </div>
             <div className="nav-search">
               <span style={{ color: "#999" }}>🔍</span>
@@ -208,15 +210,11 @@ export default function HomeClient({ posts }: { posts: any[] }) {
             </button>
           </div>
           <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
-            {nav.map(item => <a key={item} href="#" onClick={() => setMenuOpen(false)}>{item}</a>)}
-            <div className="mobile-search">
-              <span>��</span>
-              <input placeholder={lang === "so" ? "Raadi wararka..." : "Search news..."} />
-            </div>
+            {nav.map(item => <a key={item.label} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</a>)}
           </div>
         </nav>
 
-        {/* BREAKING */}
+        {/* BREAKING TICKER */}
         <div className="breaking">
           <span className="breaking-label">{lang === "so" ? "WAR DEGDEG AH" : "BREAKING"}</span>
           <span className="breaking-text">{breakingTicker}</span>
@@ -227,23 +225,20 @@ export default function HomeClient({ posts }: { posts: any[] }) {
           {hero && (
             <div className="hero-section">
               <a href={`/news/${hero.slug?.current}`} className="hero-main">
-                <img
-                  src={getImage(hero)}
-                  alt={hero.title}
-                  onError={(e) => { (e.target as HTMLImageElement).src = "https://placehold.co/900x500/cc0000/ffffff?text=Baidoa+Online"; }}
-                />
+                <img src={getImage(hero)} alt={hero.title}
+                  onError={(e) => { (e.target as HTMLImageElement).src = "https://placehold.co/900x500/cc0000/ffffff?text=Baidoa+Online"; }} />
+                {hero.isBreaking && (
+                  <div className="hero-breaking-badge">
+                    <div className="blink-dot"></div>
+                    {lang === "so" ? "WAR DEGDEG AH" : "BREAKING NEWS"}
+                  </div>
+                )}
                 <div className="hero-overlay">
-                  {hero.isBreaking && (
-                    <div className="hero-breaking-badge">
-                      <div className="blink-dot"></div>
-                      {lang === "so" ? "WAR DEGDEG AH" : "BREAKING NEWS"}
-                    </div>
-                  )}
-                  <h1 className="hero-title">{lang === "en" {hero.title}{hero.title} hero.titleEn ? hero.titleEn : hero.title}</h1>
+                  <span className="hero-cat">{hero.category || "News"}</span>
+                  <h1 className="hero-title">{getTitle(hero)}</h1>
                   <span className="hero-meta">{timeAgo(hero.publishedAt)} · Baidoa Online</span>
                 </div>
               </a>
-
               <div className="hero-side">
                 {sideArticles.map((a: any) => (
                   <a key={a._id} className="hero-side-item" href={`/news/${a.slug?.current}`}>
@@ -251,7 +246,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                       onError={(e) => { (e.target as HTMLImageElement).src = "https://placehold.co/200x150/333/fff?text=News"; }} />
                     <div>
                       <div className="side-cat">{a.category || "News"}</div>
-                      <div className="side-title">{lang === "en" {a.title}{a.title} a.titleEn ? a.titleEn : a.title}</div>
+                      <div className="side-title">{getTitle(a)}</div>
                       <div className="side-time">{timeAgo(a.publishedAt)}</div>
                     </div>
                   </a>
@@ -273,7 +268,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                     <img src={getImage(a)} alt=""
                       onError={(e) => { (e.target as HTMLImageElement).src = "https://placehold.co/400x250/cc0000/fff?text=News"; }} />
                     <span className="a-cat">{a.category || "News"}</span>
-                    <div className="a-title">{lang === "en" {a.title}{a.title} a.titleEn ? a.titleEn : a.title}</div>
+                    <div className="a-title">{getTitle(a)}</div>
                     <span className="a-time">{timeAgo(a.publishedAt)}</span>
                   </a>
                 ))}
@@ -310,7 +305,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                     <a key={a._id} className="trend-item" href={`/news/${a.slug?.current}`}>
                       <div className="trend-num">0{i + 1}</div>
                       <div>
-                        <div className="trend-title">{lang === "en" {a.title}{a.title} a.titleEn ? a.titleEn : a.title}</div>
+                        <div className="trend-title">{getTitle(a)}</div>
                         <div className="trend-time">{timeAgo(a.publishedAt)}</div>
                       </div>
                     </a>
@@ -325,7 +320,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                     <a key={a._id} className="must-item" href={`/news/${a.slug?.current}`}>
                       <img src={getImage(a)} alt=""
                         onError={(e) => { (e.target as HTMLImageElement).src = "https://placehold.co/200x150/333/fff?text=News"; }} />
-                      <div className="must-title">{lang === "en" {a.title}{a.title} a.titleEn ? a.titleEn : a.title}</div>
+                      <div className="must-title">{getTitle(a)}</div>
                     </a>
                   ))}
                 </div>
@@ -350,16 +345,16 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                 </div>
               </div>
               <p className="f-desc">{lang === "so" ? "Ilo wareedka ugu la-aamin badan ee Soomaaliya." : "Somalia's most trusted news source."}</p>
-              <p style={{ color: "#666", fontSize: "12px", marginTop: "8px" }}>�� info@baidoaonline.com</p>
+              <p style={{ color: "#666", fontSize: "12px", marginTop: "8px" }}>📧 info@baidoaonline.com</p>
             </div>
             {[
-              { title: "Sections", links: lang === "so" ? ["Soomaaliya", "Afrika", "Adduunka", "Siyaasadda"] : ["Somalia", "Africa", "World", "Politics"] },
-              { title: "More", links: lang === "so" ? ["Ciyaaraha", "Ganacsiga", "Maqaallo", "Naga Waydii"] : ["Sport", "Business", "Articles", "About Us"] },
-              { title: "Contact", links: ["info@baidoaonline.com", "X (Twitter)", "Facebook", "YouTube"] },
+              { title: "Sections", links: [{ label: "Soomaaliya", href: "/category/wararka" }, { label: "Adduunka", href: "/category/adduunka" }, { label: "Siyaasadda", href: "/category/siyaasadda" }, { label: "Ciyaaraha", href: "/category/ciyaaraha" }] },
+              { title: "More", links: [{ label: "Muuqaallo", href: "/category/muuqaallo" }, { label: "Ganacsiga", href: "/category/ganacsiga" }, { label: "Articles", href: "/category/articles" }, { label: "English", href: "/category/english" }] },
+              { title: "Contact", links: [{ label: "info@baidoaonline.com", href: "mailto:info@baidoaonline.com" }, { label: "X (Twitter)", href: "https://x.com/BaidoaOnline" }, { label: "Facebook", href: "https://facebook.com" }, { label: "YouTube", href: "https://youtube.com" }] },
             ].map(col => (
               <div key={col.title} className="f-col">
                 <h4>{col.title}</h4>
-                {col.links.map(link => <a key={link} href="#">{link}</a>)}
+                {col.links.map(link => <a key={link.label} href={link.href}>{link.label}</a>)}
               </div>
             ))}
           </div>
