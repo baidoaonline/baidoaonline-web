@@ -197,7 +197,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
               </div>
             </a>
             <div className="desktop-nav">
-              {nav.map(item => <a key={item} href="#">{item}</a>)}
+              {nav.map(item => <a key={item} href={item === 'Home' ? '/' : `/category/${item.toLowerCase().replace(/ /g, '-')}`}>{item}</a>)}
             </div>
             <div className="nav-search">
               <span style={{ color: "#999" }}>🔍</span>
