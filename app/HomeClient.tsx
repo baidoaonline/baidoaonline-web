@@ -229,7 +229,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
               <a href={`/news/${hero.slug?.current}`} className="hero-main">
                 <img
                   src={getImage(hero)}
-                  alt={lang === "en" {hero.title}{hero.title} hero.titleEn ? hero.titleEn : hero.title}
+                  alt={hero.title}
                   onError={(e) => { (e.target as HTMLImageElement).src = "https://placehold.co/900x500/cc0000/ffffff?text=Baidoa+Online"; }}
                 />
                 <div className="hero-overlay">
