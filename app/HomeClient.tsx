@@ -222,10 +222,6 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                   alt={hero.title}
                   onError={(e) => { (e.target as HTMLImageElement).src = "https://placehold.co/900x500/cc0000/ffffff?text=Baidoa+Online"; }}
                 />
-                <div className="hero-breaking-badge">
-                  <div className="blink-dot"></div>
-                  {lang === "so" ? "WAR DEGDEG AH" : "BREAKING NEWS"}
-                </div>
                 <div className="hero-overlay">
                   <span className="hero-cat">{hero.category || "News"}</span>
                   <h1 className="hero-title">{hero.title}</h1>
