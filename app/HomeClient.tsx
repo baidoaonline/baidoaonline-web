@@ -219,12 +219,11 @@ export default function HomeClient({ posts }: { posts: any[] }) {
               <a href={`/news/${hero.slug?.current}`} className="hero-main">
                 <img
                   src={getImage(hero)}
-                  alt={hero.title}
+                  alt={lang === "en" {hero.title}{hero.title} hero.titleEn ? hero.titleEn : hero.title}
                   onError={(e) => { (e.target as HTMLImageElement).src = "https://placehold.co/900x500/cc0000/ffffff?text=Baidoa+Online"; }}
                 />
                 <div className="hero-overlay">
-                  <span className="hero-cat">{lang === "so" ? "WAR DEGDEG AH" : "BREAKING NEWS"}</span>
-                  <h1 className="hero-title">{hero.title}</h1>
+                  <h1 className="hero-title">{lang === "en" {hero.title}{hero.title} hero.titleEn ? hero.titleEn : hero.title}</h1>
                   <span className="hero-meta">{timeAgo(hero.publishedAt)} · Baidoa Online</span>
                 </div>
               </a>
@@ -236,7 +235,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                       onError={(e) => { (e.target as HTMLImageElement).src = "https://placehold.co/200x150/333/fff?text=News"; }} />
                     <div>
                       <div className="side-cat">{a.category || "News"}</div>
-                      <div className="side-title">{a.title}</div>
+                      <div className="side-title">{lang === "en" {a.title}{a.title} a.titleEn ? a.titleEn : a.title}</div>
                       <div className="side-time">{timeAgo(a.publishedAt)}</div>
                     </div>
                   </a>
@@ -258,7 +257,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                     <img src={getImage(a)} alt=""
                       onError={(e) => { (e.target as HTMLImageElement).src = "https://placehold.co/400x250/cc0000/fff?text=News"; }} />
                     <span className="a-cat">{a.category || "News"}</span>
-                    <div className="a-title">{a.title}</div>
+                    <div className="a-title">{lang === "en" {a.title}{a.title} a.titleEn ? a.titleEn : a.title}</div>
                     <span className="a-time">{timeAgo(a.publishedAt)}</span>
                   </a>
                 ))}
@@ -295,7 +294,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                     <a key={a._id} className="trend-item" href={`/news/${a.slug?.current}`}>
                       <div className="trend-num">0{i + 1}</div>
                       <div>
-                        <div className="trend-title">{a.title}</div>
+                        <div className="trend-title">{lang === "en" {a.title}{a.title} a.titleEn ? a.titleEn : a.title}</div>
                         <div className="trend-time">{timeAgo(a.publishedAt)}</div>
                       </div>
                     </a>
@@ -310,7 +309,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                     <a key={a._id} className="must-item" href={`/news/${a.slug?.current}`}>
                       <img src={getImage(a)} alt=""
                         onError={(e) => { (e.target as HTMLImageElement).src = "https://placehold.co/200x150/333/fff?text=News"; }} />
-                      <div className="must-title">{a.title}</div>
+                      <div className="must-title">{lang === "en" {a.title}{a.title} a.titleEn ? a.titleEn : a.title}</div>
                     </a>
                   ))}
                 </div>

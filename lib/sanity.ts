@@ -1,4 +1,3 @@
-
 import { createClient } from 'next-sanity'
 import imageUrlBuilder from '@sanity/image-url'
 
@@ -20,6 +19,7 @@ export async function getPosts() {
     *[_type == "post"] | order(publishedAt desc, _createdAt desc) {
       _id,
       title,
+      titleEn,
       slug,
       mainImage,
       publishedAt,
@@ -34,10 +34,12 @@ export async function getPost(slug: string) {
     *[_type == "post" && slug.current == $slug][0] {
       _id,
       title,
+      titleEn,
       slug,
       mainImage,
       publishedAt,
       body,
+      bodyEn,
       "category": categories[0]->title,
       "author": author->name
     }
