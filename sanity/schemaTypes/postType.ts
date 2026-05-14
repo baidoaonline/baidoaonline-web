@@ -9,6 +9,12 @@ export const postType = defineType({
   fields: [
     defineField({
       name: 'title',
+      title: 'Title (Somali)',
+      type: 'string',
+    }),
+    defineField({
+      name: 'titleEn',
+      title: 'Title (English)',
       type: 'string',
     }),
     defineField({
@@ -48,6 +54,12 @@ export const postType = defineType({
     }),
     defineField({
       name: 'body',
+      title: 'Body (Somali)',
+      type: 'blockContent',
+    }),
+    defineField({
+      name: 'bodyEn',
+      title: 'Body (English)',
       type: 'blockContent',
     }),
   ],
