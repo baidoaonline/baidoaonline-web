@@ -1,6 +1,6 @@
 import { client, urlFor } from '@/lib/sanity'
 import { groq } from 'next-sanity'
-import Link from 'next/link'
+
 import { notFound } from 'next/navigation'
 
 export const revalidate = 60
