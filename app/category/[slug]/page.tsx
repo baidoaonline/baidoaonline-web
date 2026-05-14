@@ -104,7 +104,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
         ) : (
           <div className="grid">
             {posts.map((post: any) => (
-              <a key={post._id} className="card" href={`/news/${post.slug?.current}`}>
+              <a key={post._id} className="card" href={`/news/${post.slug?.current}${slug === "english" ? "?lang=en" : ""}`}>
                 <img
                   src={post.imageUrl || 'https://placehold.co/400x250/cc0000/fff?text=News'}
                   alt={post.title}
