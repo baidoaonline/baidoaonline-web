@@ -8,6 +8,16 @@ export default function HomeClient({ posts }: { posts: any[] }) {
 
   const nav = ["Home", "Wararka", "Adduunka", "Siyaasadda", "Ciyaaraha", "Muuqaallo", "Articles", "English", "Naga Soo Xiriir"];
 
+  const breakingNewsItems = posts.filter((p: any) => p.isBreaking);
+  const breakingTicker = breakingNewsItems.length > 0
+    ? breakingNewsItems.map((p: any) => lang === "en" && p.titleEn ? p.titleEn : p.title).join(" · ")
+    : lang === "so" ? "Baidoa Online - Wararka ugu dambeeyay" : "Baidoa Online - Latest News";
+  // legacy fallback
+  const breakingItems = posts.filter((p: any) => p.isBreaking);
+  const breakingTicker = breakingItems.length > 0
+    ? breakingItems.map((p: any) => lang === "en" && p.titleEn ? p.titleEn : p.title).join(" · ")
+    : posts.slice(0, 5).map((p: any) => lang === "en" && p.titleEn ? p.titleEn : p.title).join(" · ");
+  // legacy
   const breakingText = {
     so: "Ciidamada Federaalka oo horumar weyn ka sameeyay koonfurta Soomaaliya · Shirka Xalane oo ku soo idlaaday ballan cusub · Garoonka Baydhabo oo helaya dulimaadyo caalamiya",
     en: "Federal forces report major advances in southwest Somalia · Xalane talks conclude with new meeting scheduled · Baidoa airport to receive international flights by Q3 2026",
@@ -209,7 +219,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
         {/* BREAKING */}
         <div className="breaking">
           <span className="breaking-label">{lang === "so" ? "WAR DEGDEG AH" : "BREAKING"}</span>
-          <span className="breaking-text">{breakingText[lang]}</span>
+          <span className="breaking-text">{breakingTicker}</span>
         </div>
 
         <div className="page-wrap">
