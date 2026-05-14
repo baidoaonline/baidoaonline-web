@@ -20,7 +20,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   if (!categoryTitle) return notFound()
 
   const posts = await client.fetch(
-    `*[_type == "post" && references(*[_type == "category" && title == $cat]._id)] | order(publishedAt desc) {
+    `*[_type == "post" && (references(*[_type == "category" && title == $cat]._id) || ($cat == "English" && defined(titleEn)))] | order(publishedAt desc) {
       _id, title, titleEn, slug, mainImage, publishedAt, isBreaking,
       "category": categories[0]->title,
       "imageUrl": mainImage.asset->url
