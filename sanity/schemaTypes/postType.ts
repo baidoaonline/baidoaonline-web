@@ -8,6 +8,13 @@ export const postType = defineType({
   icon: DocumentTextIcon,
   fields: [
     defineField({
+      name: 'isBreaking',
+      title: '🔴 Breaking News',
+      type: 'boolean',
+      description: 'Check this to show BREAKING NEWS badge on this article',
+      initialValue: false,
+    }),
+    defineField({
       name: 'title',
       title: 'Title (Somali)',
       type: 'string',
@@ -20,9 +27,7 @@ export const postType = defineType({
     defineField({
       name: 'slug',
       type: 'slug',
-      options: {
-        source: 'title',
-      },
+      options: { source: 'title' },
     }),
     defineField({
       name: 'author',
@@ -32,9 +37,7 @@ export const postType = defineType({
     defineField({
       name: 'mainImage',
       type: 'image',
-      options: {
-        hotspot: true,
-      },
+      options: { hotspot: true },
       fields: [
         defineField({
           name: 'alt',

@@ -23,6 +23,7 @@ export async function getPosts() {
       slug,
       mainImage,
       publishedAt,
+      isBreaking,
       "category": categories[0]->title,
       "excerpt": array::join(string::split(pt::text(body), "")[0..200], "")
     }
@@ -38,6 +39,7 @@ export async function getPost(slug: string) {
       slug,
       mainImage,
       publishedAt,
+      isBreaking,
       body,
       bodyEn,
       "category": categories[0]->title,
