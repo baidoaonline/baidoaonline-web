@@ -1,4 +1,4 @@
-import { client, urlFor } from '@/lib/sanity'
+import { client } from '@/lib/sanity'
 import { notFound } from 'next/navigation'
 
 export const revalidate = 60
@@ -22,17 +22,11 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   const posts = await client.fetch(
     `*[_type == "post" && references(*[_type == "category" && title == $cat]._id)] | order(publishedAt desc) {
       _id, title, titleEn, slug, mainImage, publishedAt, isBreaking,
-      "category": categories[0]->title
+      "category": categories[0]->title,
+      "imageUrl": mainImage.asset->url
     }`,
     { cat: categoryTitle }
   )
-
-  function getImage(post: any) {
-    try {
-      if (post?.mainImage) return urlFor(post.mainImage).width(600).url()
-    } catch {}
-    return 'https://placehold.co/400x250/cc0000/ffffff?text=Baidoa+Online'
-  }
 
   function timeAgo(dateStr: string) {
     if (!dateStr) return ''
@@ -111,8 +105,11 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
           <div className="grid">
             {posts.map((post: any) => (
               <a key={post._id} className="card" href={`/news/${post.slug?.current}`}>
-                <img src={getImage(post)} alt={post.title}
-                  onError={(e) => { (e.target as HTMLImageElement).src = 'https://placehold.co/400x250/cc0000/fff?text=News' }} />
+                <img
+                  src={post.imageUrl || 'https://placehold.co/400x250/cc0000/fff?text=News'}
+                  alt={post.title}
+                  onError={(e) => { (e.target as HTMLImageElement).src = 'https://placehold.co/400x250/cc0000/fff?text=News' }}
+                />
                 <div className="card-body">
                   {post.isBreaking && <div className="breaking-badge">WAR DEGDEG AH</div>}
                   <div className="card-cat">{post.category}</div>
