@@ -83,7 +83,6 @@ export default function ContactPage() {
                 <div>
                   <div className="info-title">Email</div>
                   <div className="info-value"><a href="mailto:info@baidoaonline.com">info@baidoaonline.com</a></div>
-                  <div className="info-value"><a href="mailto:admin@baidoaonline.com">admin@baidoaonline.com</a></div>
                 </div>
               </div>
 
