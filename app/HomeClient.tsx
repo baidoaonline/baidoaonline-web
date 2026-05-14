@@ -223,6 +223,12 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                   onError={(e) => { (e.target as HTMLImageElement).src = "https://placehold.co/900x500/cc0000/ffffff?text=Baidoa+Online"; }}
                 />
                 <div className="hero-overlay">
+                  {hero.isBreaking && (
+                    <div className="hero-breaking-badge">
+                      <div className="blink-dot"></div>
+                      {lang === "so" ? "WAR DEGDEG AH" : "BREAKING NEWS"}
+                    </div>
+                  )}
                   <h1 className="hero-title">{lang === "en" {hero.title}{hero.title} hero.titleEn ? hero.titleEn : hero.title}</h1>
                   <span className="hero-meta">{timeAgo(hero.publishedAt)} · Baidoa Online</span>
                 </div>
