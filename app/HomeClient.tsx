@@ -480,6 +480,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                 { label: "Business", href: "/category/ganacsiga" },
                 { label: "Af-Maay", href: "/category/af-maay" },
                 { label: "Opinion", href: "/category/opinion" },
+                { label: "About Us", href: "/about" },
                 { label: "Contact", href: "/contact" },
               ]},
             ].map(col => (
