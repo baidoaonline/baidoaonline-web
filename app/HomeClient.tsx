@@ -30,11 +30,11 @@ export default function HomeClient({ posts }: { posts: any[] }) {
   function timeAgo(dateStr: string) {
     if (!dateStr) return "";
     const diff = Math.floor((Date.now() - new Date(dateStr).getTime()) / 60000);
-    if (diff < 60) return lang === "so" ? `${diff} daqiiqo ka hor` : `${diff} min ago`;
+    if (diff < 60) return `${diff} min ago`;
     const h = Math.floor(diff / 60);
-    if (h < 24) return lang === "so" ? `${h} saacadood ka hor` : `${h} hours ago`;
+    if (h < 24) return `${h} hours ago`;
     const d = Math.floor(h / 24);
-    return lang === "so" ? `${d} maalmood ka hor` : `${d} days ago`;
+    return `${d} days ago`;
   }
 
   function getTitle(post: any) {
