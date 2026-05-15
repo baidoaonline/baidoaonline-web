@@ -98,8 +98,8 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
 
         {posts.length === 0 ? (
           <div className="empty">
-            <h2>Wax wariye ah lama helin</h2>
-            <p>No articles found in this category yet.</p>
+            <h2>🚧 Content Coming Soon</h2>
+            <p>Stay tuned for the latest news!</p>
           </div>
         ) : (
           <div className="grid">
