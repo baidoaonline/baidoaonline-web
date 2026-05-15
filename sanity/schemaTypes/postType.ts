@@ -1,59 +1,6 @@
 import {DocumentTextIcon} from '@sanity/icons'
 import {defineArrayMember, defineField, defineType} from 'sanity'
-import {useClient} from 'sanity'
-import {useCallback, useState} from 'react'
-import {Button, Stack, Text, Spinner} from '@sanity/ui'
-import {set, useFormValue} from 'sanity'
-
-function TranslateButton({onChange, fieldName, sourceField}: any) {
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
-  const sourceValue = useFormValue([sourceField])
-
-  const translate = useCallback(async () => {
-    if (!sourceValue) {
-      setError('No source text to translate')
-      return
-    }
-    setLoading(true)
-    setError('')
-    try {
-      const isToEnglish = fieldName === 'titleEn' || fieldName === 'bodyEn'
-      const prompt = isToEnglish
-        ? `Translate this Somali text to English. Return only the translation, nothing else:\n\n${typeof sourceValue === 'string' ? sourceValue : JSON.stringify(sourceValue)}`
-        : `Translate this English text to Somali. Return only the translation, nothing else:\n\n${typeof sourceValue === 'string' ? sourceValue : JSON.stringify(sourceValue)}`
-
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 1000,
-          messages: [{ role: 'user', content: prompt }]
-        })
-      })
-      const data = await response.json()
-      const translated = data.content[0].text
-      onChange(set(translated))
-    } catch (e) {
-      setError('Translation failed. Please try again.')
-    }
-    setLoading(false)
-  }, [sourceValue, fieldName, onChange])
-
-  return (
-    <Stack space={2}>
-      <Button
-        onClick={translate}
-        disabled={loading}
-        tone="primary"
-        text={loading ? 'Translating...' : '🤖 Auto Translate'}
-        icon={loading ? Spinner : undefined}
-      />
-      {error && <Text size={1} style={{color: 'red'}}>{error}</Text>}
-    </Stack>
-  )
-}
+import {TranslateTitleButton} from '../components/TranslateButton'
 
 export const postType = defineType({
   name: 'post',
@@ -77,18 +24,7 @@ export const postType = defineType({
       name: 'titleEn',
       title: 'Title (English)',
       type: 'string',
-      components: {
-        field: (props: any) => (
-          <Stack space={3}>
-            {props.renderDefault(props)}
-            <TranslateButton
-              onChange={props.onChange}
-              fieldName="titleEn"
-              sourceField="title"
-            />
-          </Stack>
-        )
-      }
+      components: { input: TranslateTitleButton }
     }),
     defineField({
       name: 'slug',
@@ -130,18 +66,6 @@ export const postType = defineType({
       name: 'bodyEn',
       title: 'Body (English)',
       type: 'blockContent',
-      components: {
-        field: (props: any) => (
-          <Stack space={3}>
-            {props.renderDefault(props)}
-            <TranslateButton
-              onChange={props.onChange}
-              fieldName="bodyEn"
-              sourceField="body"
-            />
-          </Stack>
-        )
-      }
     }),
   ],
   preview: {
