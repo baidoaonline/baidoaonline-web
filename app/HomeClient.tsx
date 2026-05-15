@@ -481,6 +481,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                 { label: "Af-Maay", href: "/category/af-maay" },
                 { label: "Opinion", href: "/category/opinion" },
                 { label: "About Us", href: "/about" },
+                { label: "Privacy Policy", href: "/privacy" },
                 { label: "Contact", href: "/contact" },
               ]},
             ].map(col => (
