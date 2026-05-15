@@ -230,7 +230,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
           <div className="topbar-social">
             <a href="https://facebook.com" target="_blank" rel="noreferrer">Facebook</a>
             <a href="https://x.com/BaidoaOnline" target="_blank" rel="noreferrer">X (Twitter)</a>
-            <a href="https://youtube.com" target="_blank" rel="noreferrer">YouTube</a>
+            <a href="https://www.youtube.com/@BaidoaOnline" target="_blank" rel="noreferrer">YouTube</a>
           </div>
         </div>
 
@@ -407,7 +407,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                   {[
                     { name: "Facebook", count: "12,400 Fans", color: "#1877f2", icon: "f", link: "https://facebook.com" },
                     { name: "X (Twitter)", count: "13,200 Followers", color: "#000", icon: "𝕏", link: "https://x.com/BaidoaOnline" },
-                    { name: "YouTube", count: "8,500 Subs", color: "#ff0000", icon: "▶", link: "https://youtube.com" },
+                    { name: "YouTube", count: "8,500 Subs", color: "#ff0000", icon: "▶", link: "https://www.youtube.com/@BaidoaOnline" },
                   ].map(s => (
                     <div key={s.name} className="social-row">
                       <div className="s-icon" style={{ background: s.color }}>{s.icon}</div>

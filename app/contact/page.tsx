@@ -122,7 +122,7 @@ export default function ContactPage() {
                     <div className="social-handle">@BaidoaOnline</div>
                   </div>
                 </a>
-                <a href="https://youtube.com" target="_blank" rel="noreferrer" className="social-link">
+                <a href="https://www.youtube.com/@BaidoaOnline" target="_blank" rel="noreferrer" className="social-link">
                   <div className="social-icon" style={{ background: '#ff0000' }}>▶</div>
                   <div>
                     <div className="social-name">YouTube</div>
