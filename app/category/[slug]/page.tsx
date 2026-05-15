@@ -31,10 +31,10 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   function timeAgo(dateStr: string) {
     if (!dateStr) return ''
     const diff = Math.floor((Date.now() - new Date(dateStr).getTime()) / 60000)
-    if (diff < 60) return `${diff} daqiiqo ka hor`
+    if (diff < 60) return `${diff} min ago`
     const h = Math.floor(diff / 60)
-    if (h < 24) return `${h} saacadood ka hor`
-    return `${Math.floor(h / 24)} maalmood ka hor`
+    if (h < 24) return `${h} hours ago`
+    return `${Math.floor(h / 24)} days ago`
   }
 
   return (
