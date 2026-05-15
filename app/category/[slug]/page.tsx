@@ -111,7 +111,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
                   
                 />
                 <div className="card-body">
-                  {post.isBreaking {post.isBreaking && <div className="breaking-badge">WAR DEGDEG AH</div>}{post.isBreaking && <div className="breaking-badge">WAR DEGDEG AH</div>} <div className="breaking-badge">{slug === "english" ? "BREAKING NEWS" : "WAR DEGDEG AH"}</div>}
+                  {post.isBreaking {post.isBreaking {post.isBreaking && <div className="breaking-badge">WAR DEGDEG AH</div>}{post.isBreaking && <div className="breaking-badge">WAR DEGDEG AH</div>} <div className="breaking-badge">{slug === "english" ? "BREAKING NEWS" : "WAR DEGDEG AH"}</div>}{post.isBreaking {post.isBreaking && <div className="breaking-badge">WAR DEGDEG AH</div>}{post.isBreaking && <div className="breaking-badge">WAR DEGDEG AH</div>} <div className="breaking-badge">{slug === "english" ? "BREAKING NEWS" : "WAR DEGDEG AH"}</div>} <div className="breaking-badge">{slug === "english" ? "BREAKING NEWS" : "WAR DEGDEG AH"}</div>}
                   <div className="card-cat">{post.category}</div>
                   <div className="card-title">{slug === "english" ? (post.titleEn || post.title) : post.title}</div>
                   <div className="card-time">{timeAgo(post.publishedAt)}</div>
