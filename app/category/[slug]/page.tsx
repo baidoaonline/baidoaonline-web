@@ -21,6 +21,7 @@ const categoryMap: Record<string, string> = {
   galmudug: 'Galmudug',
   'north-east': 'North East',
   somaliland: 'Somaliland',
+  banadir: 'Banadir (Mogadishu)',
   africa: 'Africa',
   'middle-east': 'Middle East',
   europe: 'Europe',
