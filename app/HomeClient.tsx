@@ -36,6 +36,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
     : posts.slice(0, 5).map((p: any) => getTitle(p)).join(" · ");
 
   const somaliaStates = [
+    { label: "Banadir (Mogadishu)", href: "/category/banadir" },
     { label: "South West", href: "/category/south-west" },
     { label: "Puntland", href: "/category/puntland" },
     { label: "Hirshabelle", href: "/category/hirshabelle" },
