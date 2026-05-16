@@ -43,7 +43,10 @@ export async function getPost(slug: string) {
       body,
       bodyEn,
       "category": categories[0]->title,
-      "author": author->name
+      "author": author->name,
+      videoUrl,
+      "gallery": gallery[]{ ..., "url": asset->url },
+      "attachments": attachments[]{ title, "asset": asset-> }
     }
   `, { slug })
 }

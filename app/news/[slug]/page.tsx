@@ -36,6 +36,13 @@ export default async function ArticlePage({
   const readTime = calculateReadTime(body)
   const shareUrl = `https://www.baidoaonline.com/news/${slug}`
 
+  function getYouTubeEmbedUrl(url: string) {
+    if (!url) return ''
+    if (url.includes('watch?v=')) return url.replace('watch?v=', 'embed/')
+    if (url.includes('youtu.be/')) return url.replace('youtu.be/', 'www.youtube.com/embed/')
+    return url
+  }
+
   return (
     <>
       <style>{`
@@ -62,7 +69,6 @@ export default async function ArticlePage({
         .share-row { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
         .share-label { font-size: 12px; font-weight: 700; color: #555; margin-right: 4px; }
         .share-btn { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; color: #fff; font-size: 14px; font-weight: 700; cursor: pointer; border: none; text-decoration: none; }
-        .share-btn:hover { opacity: 0.85; }
         .article-img { width: 100%; height: 420px; object-fit: cover; border-radius: 8px; display: block; margin-bottom: 28px; }
         .article-body { font-size: 17px; line-height: 1.85; color: #222; }
         .article-body p { margin-bottom: 20px; }
@@ -71,6 +77,19 @@ export default async function ArticlePage({
         .article-body ul, .article-body ol { margin: 0 0 20px 24px; }
         .article-body li { margin-bottom: 8px; }
         .article-body blockquote { border-left: 4px solid #cc0000; padding: 12px 20px; margin: 24px 0; background: #fafafa; font-style: italic; color: #444; }
+        .section-hdr { background: #111; border-radius: 8px; padding: 12px 16px; margin: 32px 0 16px; display: flex; align-items: center; gap: 8px; }
+        .section-hdr span { color: #fff; font-size: 14px; font-weight: 700; letter-spacing: 1px; }
+        .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; margin-bottom: 28px; }
+        .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; margin-bottom: 28px; }
+        .gallery-item { border-radius: 8px; overflow: hidden; border: 1px solid #eee; }
+        .gallery-item img { width: 100%; height: 200px; object-fit: cover; display: block; }
+        .gallery-caption { padding: 8px 12px; font-size: 12px; color: #666; background: #f9f9f9; }
+        .attachment-item { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: #fff; border: 1px solid #eee; border-radius: 8px; margin-bottom: 8px; text-decoration: none; color: #111; transition: border-color 0.15s; }
+        .attachment-item:hover { border-color: #cc0000; }
+        .attachment-icon { font-size: 24px; flex-shrink: 0; }
+        .attachment-title { font-size: 14px; font-weight: 700; color: #111; }
+        .attachment-sub { font-size: 12px; color: #cc0000; margin-top: 2px; }
         .footer { background: #1a1a1a; padding: 28px 16px; margin-top: 48px; text-align: center; }
         .footer p { color: #555; font-size: 12px; }
         @media (max-width: 600px) {
@@ -94,7 +113,7 @@ export default async function ArticlePage({
           </a>
           <div className="lang-switch">
             <a href={`/news/${slug}`}>
-              <button className={`lang-btn ${!isEnglish ? 'active' : ''}`}>🇸🇴 SO</button>
+              <button className={`lang-btn ${!isEnglish ? 'active' : ''}`}>🇸�� SO</button>
             </a>
             <a href={`/news/${slug}?lang=en`}>
               <button className={`lang-btn ${isEnglish ? 'active' : ''}`}>🇬🇧 EN</button>
@@ -135,6 +154,57 @@ export default async function ArticlePage({
             <PortableText value={body} />
           </article>
         )}
+
+        {/* VIDEO EMBED */}
+        {post.videoUrl && (
+          <>
+            <div className="section-hdr">
+              <span>▶ VIDEO</span>
+            </div>
+            <div className="video-wrap">
+              <iframe
+                src={getYouTubeEmbedUrl(post.videoUrl)}
+                allowFullScreen
+              />
+            </div>
+          </>
+        )}
+
+        {/* PHOTO GALLERY */}
+        {post.gallery && post.gallery.length > 0 && (
+          <>
+            <div className="section-hdr">
+              <span>📸 PHOTO GALLERY</span>
+            </div>
+            <div className="gallery-grid">
+              {post.gallery.map((img: any, i: number) => (
+                <div key={i} className="gallery-item">
+                  <img src={urlFor(img).width(500).url()} alt={img.alt || ''} />
+                  {img.alt && <div className="gallery-caption">{img.alt}</div>}
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+
+        {/* ATTACHMENTS */}
+        {post.attachments && post.attachments.length > 0 && (
+          <>
+            <div className="section-hdr">
+              <span>📎 OFFICIAL DOCUMENTS</span>
+            </div>
+            {post.attachments.map((att: any, i: number) => (
+              <a key={i} href={att.asset?.url} target="_blank" rel="noreferrer" className="attachment-item">
+                <div className="attachment-icon">📄</div>
+                <div>
+                  <div className="attachment-title">{att.title || 'Official Document'}</div>
+                  <div className="attachment-sub">Click to download PDF</div>
+                </div>
+              </a>
+            ))}
+          </>
+        )}
+
       </div>
 
       <footer className="footer">
