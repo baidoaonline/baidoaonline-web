@@ -50,6 +50,12 @@ export const postType = defineType({
       ]
     }),
     defineField({
+      name: 'videoUrl',
+      title: '🎬 Video URL (YouTube or other video link)',
+      type: 'url',
+      description: 'Paste YouTube video URL here — it will embed in the article',
+    }),
+    defineField({
       name: 'gallery',
       title: '📸 Photo Gallery (extra photos shown below article)',
       type: 'array',
