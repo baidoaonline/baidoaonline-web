@@ -38,6 +38,7 @@ export const postType = defineType({
     }),
     defineField({
       name: 'mainImage',
+      title: '🖼️ Main Image (Hero - shows at top)',
       type: 'image',
       options: { hotspot: true },
       fields: [
@@ -45,6 +46,41 @@ export const postType = defineType({
           name: 'alt',
           type: 'string',
           title: 'Alternative text',
+        })
+      ]
+    }),
+    defineField({
+      name: 'gallery',
+      title: '📸 Photo Gallery (extra photos shown below article)',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            defineField({
+              name: 'alt',
+              type: 'string',
+              title: 'Caption / Description',
+            })
+          ]
+        })
+      ]
+    }),
+    defineField({
+      name: 'attachments',
+      title: '📎 Attachments (PDF documents, press releases)',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'file',
+          fields: [
+            defineField({
+              name: 'title',
+              type: 'string',
+              title: 'Document Title (e.g. AU Press Release)',
+            })
+          ]
         })
       ]
     }),
