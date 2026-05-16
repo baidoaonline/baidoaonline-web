@@ -82,11 +82,6 @@ export default function HomeClient({ posts }: { posts: any[] }) {
         .navbar { background: #fff; border-bottom: 1px solid #e0e0e0; box-shadow: 0 2px 8px rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 1000; }
         .navbar-top { max-width: 1280px; margin: 0 auto; padding: 0 16px; display: flex; justify-content: space-between; align-items: center; height: 64px; }
         .logo-wrap { display: flex; align-items: center; gap: 10px; }
-        .logo-icon { position: relative; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; }
-        .logo-dot { width: 10px; height: 10px; border-radius: 50%; background: #cc0000; position: absolute; }
-        .logo-ring1 { width: 22px; height: 22px; border-radius: 50%; border: 2.5px solid #cc0000; opacity: 0.7; position: absolute; animation: pulse 2s infinite; }
-        .logo-ring2 { width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid #cc0000; opacity: 0.3; position: absolute; }
-        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.7; } 50% { transform: scale(1.1); opacity: 0.4; } }
         .logo-text { display: flex; flex-direction: column; }
         .logo-text-main { color: #111; font-size: 24px; font-weight: 900; letter-spacing: 3px; line-height: 1; }
         .logo-text-sub { color: #cc0000; font-size: 8px; font-weight: 700; letter-spacing: 8px; }
@@ -238,11 +233,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
         <nav className="navbar">
           <div className="navbar-top">
             <a href="/" className="logo-wrap">
-              <div className="logo-icon">
-                <div className="logo-dot"></div>
-                <div className="logo-ring1"></div>
-                <div className="logo-ring2"></div>
-              </div>
+              <div className="logo-icon" style={{width:'42px',height:'42px'}}><svg viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg"><circle cx="21" cy="21" r="19" fill="none" stroke="#cc0000" strokeWidth="1.5" strokeOpacity="0.15"/><circle cx="21" cy="21" r="15" fill="none" stroke="#cc0000" strokeWidth="1.5" strokeOpacity="0.3"/><circle cx="21" cy="21" r="11" fill="none" stroke="#cc0000" strokeWidth="1.5" strokeOpacity="0.5"/><circle cx="21" cy="21" r="7" fill="none" stroke="#cc0000" strokeWidth="1.5" strokeOpacity="0.75"/><circle cx="21" cy="21" r="4" fill="#cc0000"/></svg></div>
               <div className="logo-text">
                 <div className="logo-text-main">BAIDOA</div>
                 <div className="logo-text-sub">ONLINE</div>
@@ -459,11 +450,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
           <div className="footer-inner">
             <div className="f-brand">
               <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
-                <div className="logo-icon" style={{ width: "32px", height: "32px" }}>
-                  <div className="logo-dot"></div>
-                  <div className="logo-ring1"></div>
-                  <div className="logo-ring2"></div>
-                </div>
+                <div style={{width:'32px',height:'32px'}}><svg viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg"><circle cx="21" cy="21" r="19" fill="none" stroke="#cc0000" strokeWidth="1.5" strokeOpacity="0.15"/><circle cx="21" cy="21" r="15" fill="none" stroke="#cc0000" strokeWidth="1.5" strokeOpacity="0.3"/><circle cx="21" cy="21" r="11" fill="none" stroke="#cc0000" strokeWidth="1.5" strokeOpacity="0.5"/><circle cx="21" cy="21" r="7" fill="none" stroke="#cc0000" strokeWidth="1.5" strokeOpacity="0.75"/><circle cx="21" cy="21" r="4" fill="#cc0000"/></svg></div>
                 <div>
                   <div className="f-logo-main">BAIDOA</div>
                   <div className="f-logo-sub">ONLINE</div>
