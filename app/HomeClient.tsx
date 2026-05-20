@@ -453,7 +453,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
               <p style={{ marginTop: "8px" }}>📧 info@baidoaonline.com</p>
             </div>
             {[
-              { title: "Somalia", links: somaliaStates },
+              { title: "Somali News", links: [{ label: "Somali News", href: "/category/somalia" }] },
               { title: "World", links: worldRegions },
               { title: "More", links: [
                 { label: "Sports", href: "/category/ciyaaraha" },
