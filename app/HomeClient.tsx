@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { urlFor } from "@/lib/sanity";
 
 export default function HomeClient({ posts }: { posts: any[] }) {
-  const [lang, setLang] = useState<"so" | "en">("so");
+  const [lang, setLang] = useState<"so" | "en">("en");
   const [menuOpen, setMenuOpen] = useState(false);
   const [somaliaOpen, setSomaliaOpen] = useState(false);
   const [worldOpen, setWorldOpen] = useState(false);
