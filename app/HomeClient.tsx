@@ -209,9 +209,13 @@ export default function HomeClient({ posts }: { posts: any[] }) {
         @media (max-width: 959px) {
           .navbar-links { display: none; }
           .hamburger { display: flex !important; }
-          .hero-main img { height: 280px; }
-          .hero-title { font-size: 20px !important; }
+          .hero-main img { height: 380px; }
+          .hero-title { font-size: 22px !important; }
           .search-box { display: none; }
+          .topbar { display: none; }
+          .logo-text-main { font-size: 20px; }
+          .article-grid { grid-template-columns: 1fr 1fr; }
+          .page-wrap { margin: 16px auto; }
         }
       `}</style>
 
