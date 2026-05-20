@@ -261,20 +261,9 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                 <a href="/" className="nav-link">{lang === "so" ? "Hoyga" : "Home"}</a>
               </div>
 
-              {/* SOMALIA DROPDOWN */}
-              <div className="nav-item"
-                onMouseEnter={() => setSomaliaOpen(true)}
-                onMouseLeave={() => setSomaliaOpen(false)}>
-                <button className="nav-link">
-                  Somalia <span className="nav-arrow">▾</span>
-                </button>
-                {somaliaOpen && (
-                  <div className="dropdown">
-                    {somaliaStates.map(s => (
-                      <a key={s.label} href={s.href}>{s.label}</a>
-                    ))}
-                  </div>
-                )}
+              {/* SOMALIA LINK */}
+              <div className="nav-item">
+                <a href="/category/south-west" className="nav-link">Somalia</a>
               </div>
 
               {/* WORLD DROPDOWN */}
