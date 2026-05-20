@@ -112,8 +112,8 @@ export default function HomeClient({ posts }: { posts: any[] }) {
         .dropdown a:hover { background: #f9f9f9; color: #cc0000; padding-left: 22px; }
 
         /* BREAKING TICKER */
-        .breaking { background: #fff; border-bottom: 1px solid #eee; padding: 8px 16px; display: flex; align-items: center; gap: 14px; overflow: hidden; }
-        .breaking-label { background: #cc0000; color: #fff; padding: 4px 14px; font-size: 11px; font-weight: 900; border-radius: 3px; white-space: nowrap; letter-spacing: 1.5px; flex-shrink: 0; }
+        .breaking { background: #fff; border-bottom: 1px solid #eee; padding: 10px 16px; display: flex; align-items: center; gap: 14px; overflow: hidden; min-height: 42px; }
+        .breaking-label { background: #cc0000; color: #fff; padding: 5px 14px; font-size: 11px; font-weight: 900; border-radius: 3px; white-space: nowrap; letter-spacing: 1.5px; flex-shrink: 0; }
         .breaking-text { font-size: 13px; color: #222; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
         /* MOBILE MENU */
