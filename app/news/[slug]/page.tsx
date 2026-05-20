@@ -115,10 +115,10 @@ export default async function ArticlePage({
           </a>
           <div className="lang-switch">
             <a href={`/news/${slug}`}>
-              <button className={`lang-btn ${!isEnglish ? 'active' : ''}`}>🇸�� SO</button>
+              <button className={`lang-btn ${!isEnglish ? 'active' : ''}`}>Somali</button>
             </a>
             <a href={`/news/${slug}?lang=en`}>
-              <button className={`lang-btn ${isEnglish ? 'active' : ''}`}>🇬🇧 EN</button>
+              <button className={`lang-btn ${isEnglish ? 'active' : ''}`}>English</button>
             </a>
           </div>
         </div>
