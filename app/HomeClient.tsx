@@ -161,7 +161,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
         .article-card img { width: 100%; height: 165px; object-fit: cover; display: block; }
         .article-card-body { padding: 12px; }
         .a-cat { color: #cc0000; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
-        .a-title { font-size: 14px; font-weight: 700; line-height: 1.4; margin-top: 6px; color: #111; transition: color 0.15s; }
+        .a-title { font-size: 13px; font-weight: 700; line-height: 1.4; margin-top: 6px; color: #111; transition: color 0.15s; word-break: break-word; }
         .article-card:hover .a-title { color: #cc0000; }
         .a-time { color: #999; font-size: 11px; margin-top: 6px; display: block; }
 
@@ -215,9 +215,12 @@ export default function HomeClient({ posts }: { posts: any[] }) {
           .hero-title { font-size: 22px !important; }
           .search-box { display: none; }
           .topbar-social { display: none; }
+          .topbar-date { font-size: 10px; }
           .logo-text-main { font-size: 20px; }
-          .article-grid { grid-template-columns: 1fr 1fr; }
-          .page-wrap { margin: 16px auto; }
+          .article-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+          .article-card { overflow: hidden; }
+          .article-card img { height: 120px; }
+          .page-wrap { margin: 12px auto; padding: 0 10px; }
         }
       `}</style>
 
