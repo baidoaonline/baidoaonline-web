@@ -72,10 +72,10 @@ export default function HomeClient({ posts }: { posts: any[] }) {
         a { text-decoration: none; color: inherit; }
 
         /* TOP BAR */
-        .topbar { background: #111; padding: 6px 16px; display: flex; justify-content: space-between; align-items: center; }
-        .topbar-date { color: #aaa; font-size: 11px; }
+        .topbar { background: #fff; border-bottom: 1px solid #eee; padding: 6px 16px; display: flex; justify-content: space-between; align-items: center; }
+        .topbar-date { color: #555; font-size: 11px; }
         .topbar-social { display: flex; gap: 14px; }
-        .topbar-social a { color: #aaa; font-size: 11px; font-weight: 600; transition: color 0.2s; }
+        .topbar-social a { color: #555; font-size: 11px; font-weight: 600; transition: color 0.2s; }
         .topbar-social a:hover { color: #cc0000; }
 
         /* NAVBAR */
