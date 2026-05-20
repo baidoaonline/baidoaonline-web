@@ -263,7 +263,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
 
               {/* SOMALIA LINK */}
               <div className="nav-item">
-                <a href="/category/south-west" className="nav-link">Somalia</a>
+                <a href="/category/somalia" className="nav-link">Somali News</a>
               </div>
 
               {/* WORLD DROPDOWN */}
