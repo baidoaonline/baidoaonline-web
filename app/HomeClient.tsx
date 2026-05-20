@@ -321,7 +321,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
           <span className="breaking-label">{lang === "so" ? "WAR DEGDEG AH" : "BREAKING"}</span>
           <span className="breaking-text">{breakingTicker}</span>
         </div>
-
+        </div>
         <div className="page-wrap">
           {/* HERO */}
           {hero && (
