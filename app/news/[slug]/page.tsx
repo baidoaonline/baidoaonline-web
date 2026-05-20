@@ -1,4 +1,6 @@
 import { getPost, urlFor } from '@/lib/sanity'
+import { generateArticleSchema } from './structured-data'
+import { generateArticleSchema } from './structured-data'
 import { PortableText } from '@portabletext/react'
 import { notFound } from 'next/navigation'
 
@@ -43,6 +45,7 @@ export default async function ArticlePage({
     return url
   }
 
+  const schema = generateArticleSchema(post, `https://www.baidoaonline.com/news/${(await params).slug}`)
   return (
     <>
       <style>{`
@@ -122,6 +125,7 @@ export default async function ArticlePage({
         </div>
       </nav>
 
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <div className="article-wrap">
         <a href={isEnglish ? '/category/english' : '/'} className="back-link">← {isEnglish ? 'Back' : 'Bogga Hore'}</a>
         {post.category && <div className="article-cat">{post.category}</div>}
