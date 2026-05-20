@@ -103,11 +103,7 @@ export default async function ArticlePage({
       <nav className="navbar">
         <div className="navbar-inner">
           <a href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div className="logo-icon">
-              <div className="logo-dot"></div>
-              <div className="logo-ring1"></div>
-              <div className="logo-ring2"></div>
-            </div>
+            <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="21" cy="21" r="19" stroke="#cc0000" strokeWidth="1.5" strokeOpacity="0.2"/><circle cx="21" cy="21" r="14" stroke="#cc0000" strokeWidth="1.5" strokeOpacity="0.4"/><circle cx="21" cy="21" r="9" stroke="#cc0000" strokeWidth="1.5" strokeOpacity="0.65"/><circle cx="21" cy="21" r="5" stroke="#cc0000" strokeWidth="1.5" strokeOpacity="0.9"/><circle cx="21" cy="21" r="2.5" fill="#cc0000"/></svg>
             <div>
               <div className="logo-text-main">BAIDOA</div>
               <div className="logo-text-sub">ONLINE</div>
