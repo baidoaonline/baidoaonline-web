@@ -194,10 +194,10 @@ export default function HomeClient({ posts }: { posts: any[] }) {
         .f-brand p { color: #555; font-size: 12px; line-height: 1.8; margin-top: 12px; }
         .f-logo-main { color: #111; font-size: 20px; font-weight: 900; letter-spacing: 3px; }
         .f-logo-sub { color: #cc0000; font-size: 8px; letter-spacing: 6px; }
-        .f-col h4 { color: #111; font-size: 11px; font-weight: 900; letter-spacing: 2px; margin-bottom: 16px; text-transform: uppercase; padding-bottom: 10px; border-bottom: 1px solid #333; }
+        .f-col h4 { color: #111; font-size: 13px; font-weight: 900; letter-spacing: 1px; margin-bottom: 16px; text-transform: uppercase; padding-bottom: 10px; border-bottom: 2px solid #cc0000; }
         .f-col a { display: block; color: #555; font-size: 12px; margin-bottom: 10px; transition: color 0.15s; }
         .f-col a:hover { color: #cc0000; }
-        .footer-bottom { max-width: 1280px; margin: 32px auto 0; padding-top: 20px; border-top: 1px solid #222; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+        .footer-bottom { max-width: 1280px; margin: 32px auto 0; padding-top: 20px; border-top: 1px solid #ddd; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
         .footer-bottom p { color: #888; font-size: 11px; }
 
         /* RESPONSIVE */
@@ -469,7 +469,10 @@ export default function HomeClient({ posts }: { posts: any[] }) {
           </div>
           <div className="footer-bottom">
             <p>© 2026 Baidoa Online. {lang === "so" ? "Xuquuqda oo dhan way ilaalisan yihiin." : "All rights reserved."}</p>
-            <p>Baidoa, Bay Region · South West State, Somalia</p>
+            <div style={{display:"flex",alignItems:"center",gap:"10px"}}>
+              <svg width="32" height="32" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="21" cy="21" r="19" fill="none" stroke="#cc0000" strokeWidth="1.5" strokeOpacity="0.3"/><circle cx="21" cy="21" r="14" fill="none" stroke="#cc0000" strokeWidth="1.5" strokeOpacity="0.5"/><circle cx="21" cy="21" r="9" fill="none" stroke="#cc0000" strokeWidth="1.5" strokeOpacity="0.75"/><circle cx="21" cy="21" r="4" fill="#cc0000"/></svg>
+              <span style={{fontWeight:900,fontSize:"14px",color:"#111",letterSpacing:"2px"}}>BAIDOA <span style={{color:"#cc0000"}}>ONLINE</span></span>
+            </div>
           </div>
         </footer>
       </div>
