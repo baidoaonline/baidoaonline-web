@@ -193,13 +193,23 @@ export default async function ArticlePage({
               <span>📎 OFFICIAL DOCUMENTS</span>
             </div>
             {post.attachments.map((att: any, i: number) => (
-              <a key={i} href={att.asset?.url} target="_blank" rel="noreferrer" className="attachment-item">
-                <div className="attachment-icon">📄</div>
-                <div>
-                  <div className="attachment-title">{att.title || 'Official Document'}</div>
-                  <div className="attachment-sub">Click to download PDF</div>
+              <div key={i} style={{marginBottom:'24px'}}>
+                <div className="attachment-item">
+                  <div className="attachment-icon">📄</div>
+                  <div>
+                    <div className="attachment-title">{att.title || 'Official Document'}</div>
+                    <a href={att.asset?.url} target="_blank" rel="noreferrer" style={{fontSize:'12px',color:'#cc0000',textDecoration:'none'}}>Open in new tab ↗</a>
+                  </div>
                 </div>
-              </a>
+                {att.asset?.url && (
+                  <iframe
+                    src={att.asset.url}
+                    width="100%"
+                    height="600px"
+                    style={{border:'1px solid #eee',borderRadius:'8px',marginTop:'8px',display:'block'}}
+                  />
+                )}
+              </div>
             ))}
           </>
         )}
