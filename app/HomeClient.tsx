@@ -72,6 +72,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
         a { text-decoration: none; color: inherit; }
 
         /* TOP BAR */
+        .header-wrap { position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
         .topbar { background: #222; padding: 8px 16px; min-height: 36px; display: flex; justify-content: space-between; align-items: center; }
         .topbar-date { color: #ccc; font-size: 11px; font-weight: 600; }
         .topbar-social { display: flex; gap: 14px; }
@@ -80,7 +81,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
 
         /* NAVBAR */
         .ad-banner { background: #f9f9f9; border-bottom: 1px solid #eee; padding: 8px 16px; text-align: center; min-height: 40px; }
-        .navbar { background: #fff; border-bottom: 1px solid #e0e0e0; box-shadow: 0 2px 8px rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 1000; }
+        .navbar { background: #fff; border-bottom: 1px solid #e0e0e0; }
         .navbar-top { max-width: 1280px; margin: 0 auto; padding: 0 16px; display: flex; justify-content: space-between; align-items: center; height: 80px; }
         .logo-wrap { display: flex; align-items: center; gap: 10px; }
         .logo-text { display: flex; flex-direction: column; }
@@ -223,6 +224,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
       <div style={{ minHeight: "100vh" }}>
 
         {/* TOP BAR */}
+        <div className="header-wrap">
         <div className="topbar">
           <span className="topbar-date">
             📅 {new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}
