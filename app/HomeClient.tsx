@@ -189,16 +189,16 @@ export default function HomeClient({ posts }: { posts: any[] }) {
         .must-title:hover { color: #cc0000; }
 
         /* FOOTER */
-        .footer { background: #111; padding: 48px 16px 24px; margin-top: 40px; }
+        .footer { background: #f8f8f8; padding: 48px 16px 24px; margin-top: 40px; border-top: 3px solid #cc0000; }
         .footer-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 32px; }
-        .f-brand p { color: #777; font-size: 12px; line-height: 1.8; margin-top: 12px; }
-        .f-logo-main { color: #fff; font-size: 20px; font-weight: 900; letter-spacing: 3px; }
+        .f-brand p { color: #555; font-size: 12px; line-height: 1.8; margin-top: 12px; }
+        .f-logo-main { color: #111; font-size: 20px; font-weight: 900; letter-spacing: 3px; }
         .f-logo-sub { color: #cc0000; font-size: 8px; letter-spacing: 6px; }
-        .f-col h4 { color: #fff; font-size: 11px; font-weight: 900; letter-spacing: 2px; margin-bottom: 16px; text-transform: uppercase; padding-bottom: 10px; border-bottom: 1px solid #333; }
-        .f-col a { display: block; color: #777; font-size: 12px; margin-bottom: 10px; transition: color 0.15s; }
+        .f-col h4 { color: #111; font-size: 11px; font-weight: 900; letter-spacing: 2px; margin-bottom: 16px; text-transform: uppercase; padding-bottom: 10px; border-bottom: 1px solid #333; }
+        .f-col a { display: block; color: #555; font-size: 12px; margin-bottom: 10px; transition: color 0.15s; }
         .f-col a:hover { color: #cc0000; }
         .footer-bottom { max-width: 1280px; margin: 32px auto 0; padding-top: 20px; border-top: 1px solid #222; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
-        .footer-bottom p { color: #555; font-size: 11px; }
+        .footer-bottom p { color: #888; font-size: 11px; }
 
         /* RESPONSIVE */
         @media (min-width: 960px) {
