@@ -127,15 +127,15 @@ export default function HomeClient({ posts }: { posts: any[] }) {
 
         /* HERO */
         .hero-section { display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 28px; }
-        .hero-main { position: relative; border-radius: 12px; overflow: hidden; display: block; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
-        .hero-main img { width: 100%; height: 480px; object-fit: cover; display: block; transition: transform 0.3s; }
+        .hero-main { display: block; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); background: #fff; }
+        .hero-main img { width: 100%; height: 420px; object-fit: cover; display: block; transition: transform 0.3s; border-radius: 12px 12px 0 0; }
         .hero-main:hover img { transform: scale(1.02); }
         .hero-breaking-badge { position: absolute; top: 18px; left: 18px; background: #cc0000; color: #fff; padding: 6px 16px; font-size: 12px; font-weight: 900; border-radius: 4px; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 12px rgba(204,0,0,0.4); }
         .blink-dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; animation: blink 1s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-        .hero-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 32px 28px; background: linear-gradient(transparent, rgba(0,0,0,0.4) 20%, rgba(0,0,0,0.95)); }
+        .hero-overlay { padding: 16px 0; background: #fff; }
         .hero-cat { background: #cc0000; color: #fff; padding: 4px 12px; font-size: 11px; font-weight: 900; border-radius: 3px; display: inline-block; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
-        .hero-title { color: #fff; font-size: 28px; font-weight: 900; line-height: 1.3; margin-bottom: 10px; }
+        .hero-title { color: #111; font-size: 26px; font-weight: 900; line-height: 1.3; margin-bottom: 10px; }
         .hero-meta { color: rgba(255,255,255,0.65); font-size: 12px; display: flex; align-items: center; gap: 8px; }
 
         /* HERO SIDE */
