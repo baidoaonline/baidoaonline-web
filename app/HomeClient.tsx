@@ -211,16 +211,18 @@ export default function HomeClient({ posts }: { posts: any[] }) {
         @media (max-width: 959px) {
           .navbar-links { display: none; }
           .hamburger { display: flex !important; }
-          .hero-main img { height: 380px; }
-          .hero-title { font-size: 22px !important; }
+          .hero-main img { height: 320px; }
+          .hero-title { font-size: 20px !important; }
           .search-box { display: none; }
+          .topbar { overflow: hidden; }
           .topbar-social { display: none; }
-          .topbar-date { font-size: 10px; }
-          .logo-text-main { font-size: 20px; }
-          .article-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+          .topbar-date { font-size: 10px; max-width: 60%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+          .logo-text-main { font-size: 18px; }
+          .article-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
           .article-card { overflow: hidden; }
-          .article-card img { height: 120px; }
+          .article-card img { height: 110px; }
           .page-wrap { margin: 12px auto; padding: 0 10px; }
+          .hero-section { gap: 12px; }
         }
       `}</style>
 
