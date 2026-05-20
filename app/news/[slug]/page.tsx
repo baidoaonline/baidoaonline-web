@@ -1,6 +1,5 @@
 import { getPost, urlFor } from '@/lib/sanity'
 import { generateArticleSchema } from './structured-data'
-import { generateArticleSchema } from './structured-data'
 import { PortableText } from '@portabletext/react'
 import { notFound } from 'next/navigation'
 
