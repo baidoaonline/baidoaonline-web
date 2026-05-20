@@ -72,15 +72,16 @@ export default function HomeClient({ posts }: { posts: any[] }) {
         a { text-decoration: none; color: inherit; }
 
         /* TOP BAR */
-        .topbar { background: #222; padding: 6px 16px; display: flex; justify-content: space-between; align-items: center; }
+        .topbar { background: #222; padding: 8px 16px; min-height: 36px; display: flex; justify-content: space-between; align-items: center; }
         .topbar-date { color: #ccc; font-size: 11px; font-weight: 600; }
         .topbar-social { display: flex; gap: 14px; }
         .topbar-social a { color: #ccc; font-size: 11px; font-weight: 700; transition: color 0.2s; }
         .topbar-social a:hover { color: #cc0000; }
 
         /* NAVBAR */
+        .ad-banner { background: #f9f9f9; border-bottom: 1px solid #eee; padding: 8px 16px; text-align: center; min-height: 40px; }
         .navbar { background: #fff; border-bottom: 1px solid #e0e0e0; box-shadow: 0 2px 8px rgba(0,0,0,0.06); position: sticky; top: 0; z-index: 1000; }
-        .navbar-top { max-width: 1280px; margin: 0 auto; padding: 0 16px; display: flex; justify-content: space-between; align-items: center; height: 64px; }
+        .navbar-top { max-width: 1280px; margin: 0 auto; padding: 0 16px; display: flex; justify-content: space-between; align-items: center; height: 80px; }
         .logo-wrap { display: flex; align-items: center; gap: 10px; }
         .logo-text { display: flex; flex-direction: column; }
         .logo-text-main { color: #111; font-size: 24px; font-weight: 900; letter-spacing: 3px; line-height: 1; }
@@ -212,7 +213,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
           .hero-main img { height: 380px; }
           .hero-title { font-size: 22px !important; }
           .search-box { display: none; }
-          .topbar { display: none; }
+          .topbar-social { display: none; }
           .logo-text-main { font-size: 20px; }
           .article-grid { grid-template-columns: 1fr 1fr; }
           .page-wrap { margin: 16px auto; }
