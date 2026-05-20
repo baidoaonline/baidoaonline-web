@@ -14,7 +14,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
 
   function getImage(post: any) {
     if (post?.mainImage) return urlFor(post.mainImage).width(600).url();
-    return "https://placehold.co/400x250/cc0000/ffffff?text=Baidoa+Online";
+    return "https://placehold.co/400x250/f0f0f0/999999?text=No+Image";
   }
 
   function timeAgo(dateStr: string) {
@@ -324,7 +324,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
             <div className="hero-section">
               <a href={`/news/${hero.slug?.current}`} className="hero-main">
                 <img src={getImage(hero)} alt={hero.title}
-                  onError={(e) => { (e.target as HTMLImageElement).src = "https://placehold.co/900x500/cc0000/ffffff?text=Baidoa+Online"; }} />
+                  onError={(e) => { (e.target as HTMLImageElement).src = "https://placehold.co/900x500/f0f0f0/999999?text=No+Image"; }} />
                 {hero.isBreaking && (
                   <div className="hero-breaking-badge">
                     <div className="blink-dot"></div>
@@ -369,7 +369,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                 {gridArticles.map((a: any) => (
                   <a key={a._id} className="article-card" href={`/news/${a.slug?.current}`}>
                     <img src={getImage(a)} alt=""
-                      onError={(e) => { (e.target as HTMLImageElement).src = "https://placehold.co/400x250/cc0000/fff?text=News"; }} />
+                      onError={(e) => { (e.target as HTMLImageElement).src = "https://placehold.co/400x250/f0f0f0/999999?text=No+Image"; }} />
                     <div className="article-card-body">
                       <span className="a-cat">{a.category || "News"}</span>
                       <div className="a-title">{getTitle(a)}</div>
