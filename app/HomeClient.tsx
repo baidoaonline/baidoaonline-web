@@ -297,10 +297,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
           {/* MOBILE MENU */}
           <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
             <a href="/" onClick={() => setMenuOpen(false)}>🏠 {lang === "so" ? "Hoyga" : "Home"}</a>
-            <div className="mobile-section">Somalia — Gobolada</div>
-            {somaliaStates.map(s => (
-              <a key={s.label} href={s.href} onClick={() => setMenuOpen(false)}>  {s.label}</a>
-            ))}
+            <a href="/category/somalia" onClick={() => setMenuOpen(false)} style={{fontWeight:700}}>📰 Somali News</a>
             <div className="mobile-section">World</div>
             {worldRegions.map(r => (
               <a key={r.label} href={r.href} onClick={() => setMenuOpen(false)}>  {r.label}</a>
