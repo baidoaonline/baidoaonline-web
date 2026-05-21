@@ -113,7 +113,7 @@ export default async function ArticlePage({
             <a href={`/news/${slug}?lang=so`}>
               <button className={`lang-btn ${!isEnglish ? 'active' : ''}`}>Somali</button>
             </a>
-            
+            <a href={`/news/${slug}`}>
               <button className={`lang-btn ${isEnglish ? 'active' : ''}`}>English</button>
             </a>
           </div>
