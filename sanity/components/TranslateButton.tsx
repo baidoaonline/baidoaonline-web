@@ -5,10 +5,10 @@ import {set, StringInputProps, useFormValue} from 'sanity'
 export function TranslateTitleButton(props: StringInputProps) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const sourceValue = useFormValue(['title']) as string
+  const sourceValue = useFormValue(['titleEn']) as string
 
   const translate = useCallback(async () => {
-    if (!sourceValue) { setError('Please fill in Title (Somali) first'); return }
+    if (!sourceValue) { setError('Please fill in Title (English) first'); return }
     setLoading(true); setError('')
     try {
       const response = await fetch('https://api.anthropic.com/v1/messages', {
@@ -17,7 +17,7 @@ export function TranslateTitleButton(props: StringInputProps) {
         body: JSON.stringify({
           model: 'claude-sonnet-4-20250514',
           max_tokens: 500,
-          messages: [{ role: 'user', content: `Translate this Somali news headline to English. Return only the translation:\n\n${sourceValue}` }]
+          messages: [{ role: 'user', content: `Translate this English news headline to Somali. Return only the translation:\n\n${sourceValue}` }]
         })
       })
       const data = await response.json()
@@ -33,7 +33,7 @@ export function TranslateTitleButton(props: StringInputProps) {
         onClick={translate}
         disabled={loading}
         tone="primary"
-        text={loading ? '🔄 Translating...' : '🤖 Auto Translate from Somali'}
+        text={loading ? '🔄 Translating...' : '🤖 Auto Translate to Somali'}
       />
       {error && <Card padding={2} tone="critical"><Text size={1}>{error}</Text></Card>}
     </Stack>

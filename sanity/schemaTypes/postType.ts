@@ -16,20 +16,20 @@ export const postType = defineType({
       initialValue: false,
     }),
     defineField({
-      name: 'title',
-      title: 'Title (Somali)',
+      name: 'titleEn',
+      title: 'Title (English)',
       type: 'string',
     }),
     defineField({
-      name: 'titleEn',
-      title: 'Title (English)',
+      name: 'title',
+      title: 'Title (Somali) — Auto translated from English',
       type: 'string',
       components: { input: TranslateTitleButton }
     }),
     defineField({
       name: 'slug',
       type: 'slug',
-      options: { source: 'title' },
+      options: { source: 'titleEn' },
     }),
     defineField({
       name: 'author',
