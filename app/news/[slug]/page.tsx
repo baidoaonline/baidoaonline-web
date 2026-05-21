@@ -171,19 +171,14 @@ export default async function ArticlePage({
 
         {/* PHOTO GALLERY */}
         {post.gallery && post.gallery.length > 0 && (
-          <>
-            <div className="section-hdr">
-              <span>📸 PHOTO GALLERY</span>
-            </div>
-            <div className="gallery-grid">
-              {post.gallery.map((img: any, i: number) => (
-                <div key={i} className="gallery-item">
-                  <img src={urlFor(img).width(500).url()} alt={img.alt || ''} />
-                  {img.alt && <div className="gallery-caption">{img.alt}</div>}
-                </div>
-              ))}
-            </div>
-          </>
+          <div style={{marginTop:'24px'}}>
+            {post.gallery.map((img: any, i: number) => (
+              <div key={i} style={{marginBottom:'16px'}}>
+                <img src={urlFor(img).width(900).url()} alt={img.alt || ''} style={{width:'100%',borderRadius:'8px',display:'block'}} />
+                {img.alt && <div style={{fontSize:'13px',color:'#666',marginTop:'6px',fontStyle:'italic'}}>{img.alt}</div>}
+              </div>
+            ))}
+          </div>
         )}
 
         {/* ATTACHMENTS */}
