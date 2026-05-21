@@ -23,7 +23,7 @@ export default async function ArticlePage({
 }) {
   const { slug } = await params
   const { lang } = await searchParams
-  const isEnglish = lang === 'en'
+  const isEnglish = lang !== 'so'
   const post = await getPost(slug)
   if (!post) return notFound()
 
@@ -110,10 +110,10 @@ export default async function ArticlePage({
             </div>
           </a>
           <div className="lang-switch">
-            <a href={`/news/${slug}`}>
+            <a href={`/news/${slug}?lang=so`}>
               <button className={`lang-btn ${!isEnglish ? 'active' : ''}`}>Somali</button>
             </a>
-            <a href={`/news/${slug}?lang=en`}>
+            
               <button className={`lang-btn ${isEnglish ? 'active' : ''}`}>English</button>
             </a>
           </div>
