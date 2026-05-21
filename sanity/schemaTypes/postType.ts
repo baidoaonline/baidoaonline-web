@@ -100,13 +100,13 @@ export const postType = defineType({
       type: 'datetime',
     }),
     defineField({
-      name: 'body',
-      title: 'Body (Somali)',
+      name: 'bodyEn',
+      title: 'Body (English)',
       type: 'blockContent',
     }),
     defineField({
-      name: 'bodyEn',
-      title: 'Body (English)',
+      name: 'body',
+      title: 'Body (Somali)',
       type: 'blockContent',
     }),
   ],
