@@ -44,7 +44,7 @@ export default async function ArticlePage({
     return url
   }
 
-  const schema = generateArticleSchema(post, `https://www.baidoaonline.com/news/${(await params).slug}`)
+  const schema = generateArticleSchema(post, `https://www.baidoaonline.com/news/${slug}`)
   return (
     <>
       <style>{`
