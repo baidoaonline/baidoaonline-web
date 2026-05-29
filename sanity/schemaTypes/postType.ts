@@ -1,5 +1,6 @@
 import {DocumentTextIcon} from '@sanity/icons'
 import {defineArrayMember, defineField, defineType} from 'sanity'
+import {ArticleGenerator} from '../components/ArticleGenerator'
 import {TranslateTitleButton} from '../components/TranslateButton'
 
 export const postType = defineType({
@@ -98,6 +99,12 @@ export const postType = defineType({
     defineField({
       name: 'publishedAt',
       type: 'datetime',
+    }),
+    defineField({
+      name: 'aiGenerator',
+      title: '🤖 AI Article Generator',
+      type: 'string',
+      components: { input: ArticleGenerator },
     }),
     defineField({
       name: 'bodyEn',
