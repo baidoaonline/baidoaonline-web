@@ -353,7 +353,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
 
               <div className="hero-side">
                 {sideArticles.map((a: any) => (
-                  <a key={a._id} className="hero-side-item" href={`/news/${a.slug?.current}`}>
+                  <a key={a._id} className="hero-side-item" href={a.slug?.current ? `/news/${a.slug.current}` : "#"}>
                     <img src={getImage(a)} alt=""
                       onError={(e) => { (e.target as HTMLImageElement).src = "https://placehold.co/200x150/333/fff?text=News"; }} />
                     <div>
@@ -376,7 +376,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
               </div>
               <div className="article-grid">
                 {gridArticles.map((a: any) => (
-                  <a key={a._id} className="article-card" href={`/news/${a.slug?.current}`}>
+                  <a key={a._id} className="article-card" href={a.slug?.current ? `/news/${a.slug.current}` : "#"}>
                     <img src={getImage(a)} alt=""
                       onError={(e) => { (e.target as HTMLImageElement).src = "https://placehold.co/400x250/f0f0f0/999999?text=No+Image"; }} />
                     <div className="article-card-body">
@@ -416,7 +416,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                 <div className="sb-hdr">Trending Now</div>
                 <div className="sb-body">
                   {posts.slice(0, 4).map((a: any, i: number) => (
-                    <a key={a._id} className="trend-item" href={`/news/${a.slug?.current}`}>
+                    <a key={a._id} className="trend-item" href={a.slug?.current ? `/news/${a.slug.current}` : "#"}>
                       <div className="trend-num">0{i + 1}</div>
                       <div>
                         <div className="trend-title">{getTitle(a)}</div>
@@ -431,7 +431,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                 <div className="sb-hdr">Must Read</div>
                 <div className="sb-body">
                   {posts.slice(0, 3).map((a: any) => (
-                    <a key={a._id} className="must-item" href={`/news/${a.slug?.current}`}>
+                    <a key={a._id} className="must-item" href={a.slug?.current ? `/news/${a.slug.current}` : "#"}>
                       <img src={getImage(a)} alt=""
                         onError={(e) => { (e.target as HTMLImageElement).src = "https://placehold.co/200x150/333/fff?text=News"; }} />
                       <div className="must-title">{getTitle(a)}</div>
