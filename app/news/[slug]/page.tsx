@@ -14,6 +14,22 @@ function calculateReadTime(body: any[]): number {
   return Math.max(1, Math.ceil(words / 200))
 }
 
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const post = await getPost(slug)
+  if (!post) return {}
+  const image = post.mainImage
+    ? `https://cdn.sanity.io/images/bbo1x3xn/production/${post.mainImage.asset._ref.replace('image-','').replace(/-([a-z]+)$/, '.$1')}`
+    : 'https://www.baidoaonline.com/og-image.png'
+  const title = post.titleEn || post.title || 'Baidoa Online'
+  return {
+    title,
+    openGraph: { title, images: [{ url: image }] },
+    twitter: { card: 'summary_large_image', title, images: [image] },
+  }
+}
+
 export default async function ArticlePage({
   params,
   searchParams,
