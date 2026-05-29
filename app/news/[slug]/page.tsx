@@ -174,7 +174,7 @@ export default async function ArticlePage({
           <div style={{marginTop:'24px'}}>
             {post.gallery.map((img: any, i: number) => (
               <div key={i} style={{marginBottom:'16px'}}>
-                <img src={urlFor(img).width(900).url()} alt={img.alt || ''} style={{width:'100%',borderRadius:'8px',display:'block'}} />
+                <img src={(() => { try { return urlFor(img).width(900).url() } catch { return '' } })()} alt={img.alt || ''} style={{width:'100%',borderRadius:'8px',display:'block'}} />
                 {img.alt && <div style={{fontSize:'13px',color:'#666',marginTop:'6px',fontStyle:'italic'}}>{img.alt}</div>}
               </div>
             ))}
