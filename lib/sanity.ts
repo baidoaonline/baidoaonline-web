@@ -31,7 +31,7 @@ export async function getPosts() {
 }
 
 export async function getPost(slug: string) {
-  return await client.fetch(`
+  try { return await client.fetch(`
     *[_type == "post" && slug.current == $slug][0] {
       _id,
       title,
@@ -48,5 +48,5 @@ export async function getPost(slug: string) {
       "gallery": gallery[]{ ..., "url": asset->url },
       "attachments": attachments[]{ title, "asset": asset-> }
     }
-  `, { slug })
+  `, { slug }) } catch { return null }
 }
