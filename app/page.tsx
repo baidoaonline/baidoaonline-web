@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { getPosts } from '@/lib/sanity'
 import HomeClient from './HomeClient'
 
