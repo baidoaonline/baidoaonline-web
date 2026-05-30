@@ -131,22 +131,15 @@ export default function HomeClient({ posts }: { posts: any[] }) {
         .hero-section { display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 28px; }
         .hero-main { display: block; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); background: #fff; }
         .hero-main-img { width: 100%; padding-bottom: 56.25%; background-size: cover; background-position: center center; border-radius: 12px 12px 0 0; }
-        
-        @keyframes pulse-dot { 0%{transform:scale(1);opacity:1} 50%{transform:scale(1.4);opacity:0.5} 100%{transform:scale(1);opacity:1} }
-        .blink-dot { width:10px; height:10px; background:#fff; border-radius:50%; display:inline-block; animation:pulse-dot 1s infinite; flex-shrink:0; }
-        @keyframes blink-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(1.5)} }
-        .blink-dot { width:9px; height:9px; background:#fff; border-radius:50%; display:inline-block; flex-shrink:0; animation:blink-dot 1s ease-in-out infinite; }
-        .hero-breaking-badge { position: absolute; top: 18px; left: 18px; background: #cc0000; color: #fff; padding: 6px 16px; font-size: 12px; font-weight: 900; border-radius: 4px; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 12px rgba(204,0,0,0.4); }
-        .blink-dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; animation: blink 1s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+        .blink-dot { width:9px; height:9px; background:#fff; border-radius:50%; display:inline-block; flex-shrink:0; animation:blink 1s ease-in-out infinite; }
+        .hero-breaking-badge { position: absolute; top: 18px; left: 18px; background: #cc0000; color: #fff; padding: 6px 16px; font-size: 12px; font-weight: 900; border-radius: 4px; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 12px rgba(204,0,0,0.4); }50% { opacity: 0; } }
         .hero-overlay { padding: 12px 0 8px; background: #fff; }
         .is-breaking .hero-overlay { background: #cc0000 !important; padding: 16px; }
         .is-breaking .hero-cat-breaking { background: #fff !important; color: #cc0000 !important; display: inline-flex; align-items: center; gap: 6px; }
         .hero-cat { background: rgba(255,255,255,0.25) !important; color: #ffffff !important; }
         .is-breaking .hero-title { color: #ffffff !important; }
-        .is-breaking .hero-meta { color: rgba(255,255,255,0.9) !important; }
-        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-        .blink-dot { width:8px; height:8px; background:#fff; border-radius:50%; animation:blink 1s infinite; flex-shrink:0; }
+        .is-breaking .hero-meta { color: rgba(255,255,255,0.9) !important; } 50%{opacity:0} }
         .hero-cat { background: #cc0000; color: #fff; padding: 4px 12px; font-size: 11px; font-weight: 900; border-radius: 3px; display: inline-block; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
         .hero-title { color: #111; font-size: 26px; font-weight: 900; line-height: 1.3; margin-bottom: 10px; }
         .hero-meta { color: #888; font-size: 12px; display: flex; align-items: center; gap: 8px; margin-top: 4px; }
