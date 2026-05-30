@@ -130,8 +130,8 @@ export default function HomeClient({ posts }: { posts: any[] }) {
         /* HERO */
         .hero-section { display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 28px; }
         .hero-main { display: block; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); background: #fff; }
-        .hero-main img { width: 100%; height: 420px; object-fit: cover; display: block; transition: transform 0.3s; border-radius: 12px 12px 0 0; }
-        .hero-main:hover img { transform: scale(1.02); }
+        .hero-main img { width: 100%; height: 420px; object-fit: cover; object-position: center 20%; display: block; border-radius: 12px 12px 0 0; }
+        .hero-main:hover img { }
         .hero-breaking-badge { position: absolute; top: 18px; left: 18px; background: #cc0000; color: #fff; padding: 6px 16px; font-size: 12px; font-weight: 900; border-radius: 4px; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 12px rgba(204,0,0,0.4); }
         .blink-dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; animation: blink 1s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
