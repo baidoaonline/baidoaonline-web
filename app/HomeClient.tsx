@@ -141,7 +141,8 @@ export default function HomeClient({ posts }: { posts: any[] }) {
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         .hero-overlay { padding: 12px 0 8px; background: #fff; }
         .is-breaking .hero-overlay { background: #cc0000 !important; padding: 16px; }
-        .is-breaking .hero-cat { background: rgba(255,255,255,0.25) !important; color: #ffffff !important; }
+        .is-breaking .hero-cat-breaking { background: #fff !important; color: #cc0000 !important; display: inline-flex; align-items: center; gap: 6px; }
+        .hero-cat { background: rgba(255,255,255,0.25) !important; color: #ffffff !important; }
         .is-breaking .hero-title { color: #ffffff !important; }
         .is-breaking .hero-meta { color: rgba(255,255,255,0.9) !important; }
         @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
@@ -350,7 +351,14 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                   </div>
                 )}
                 <div className="hero-overlay">
-                  <span className="hero-cat">{hero.category || "News"}</span>
+                  {hero?.isBreaking ? (
+                    <span className="hero-cat hero-cat-breaking">
+                      <span className="blink-dot"></span>
+                      {lang === "so" ? "WAR DEGDEG AH" : "BREAKING"}
+                    </span>
+                  ) : (
+                    <span className="hero-cat">{hero.category || "News"}</span>
+                  )}
                   <h1 className="hero-title">{getTitle(hero)}</h1>
                   <div className="hero-meta">
                     <span>{timeAgo(hero.publishedAt)}</span>
