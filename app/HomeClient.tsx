@@ -131,11 +131,12 @@ export default function HomeClient({ posts }: { posts: any[] }) {
         .hero-section { display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 28px; }
         .hero-main { display: block; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); background: #fff; }
         .hero-main-img { width: 100%; padding-bottom: 56.25%; background-size: cover; background-position: center center; border-radius: 12px 12px 0 0; }
-        @keyframes ripple { 0%{transform:scale(1);opacity:1} 70%{transform:scale(2.2);opacity:0} 100%{transform:scale(1);opacity:0} }
+        @keyframes ripple { 0%{transform:scale(1);opacity:0.8} 100%{transform:scale(2.5);opacity:0} }
         @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-        .blink-dot { width:10px; height:10px; background:#cc0000; border-radius:50%; display:inline-block; flex-shrink:0; position:relative; animation:blink 1s ease-in-out infinite; }
-        .blink-dot::after { content:''; position:absolute; top:0; left:0; width:100%; height:100%; border-radius:50%; background:#cc0000; animation:ripple 1.2s ease-out infinite; }
-        .hero-breaking-badge { position: absolute; top: 18px; left: 18px; background: #cc0000; color: #fff; padding: 6px 16px; font-size: 12px; font-weight: 900; border-radius: 4px; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 12px rgba(204,0,0,0.4); }50% { opacity: 0; } }
+        .blink-dot { width:14px; height:14px; border-radius:50%; border:2px solid #fff; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; position:relative; }
+        .blink-dot::before { content:''; width:6px; height:6px; background:#fff; border-radius:50%; animation:blink 1s ease-in-out infinite; }
+        .blink-dot::after { content:''; position:absolute; inset:-3px; border-radius:50%; border:2px solid rgba(255,255,255,0.7); animation:ripple 1.3s ease-out infinite; }
+        .hero-breaking-badge { position:absolute; top:18px; left:18px; background:rgba(0,0,0,0.55); color:#fff; padding:6px 14px; font-size:12px; font-weight:900; border-radius:4px; letter-spacing:1.5px; display:flex; align-items:center; gap:8px; }
         .hero-overlay { padding: 12px 0 8px; background: #fff; }
         .is-breaking .hero-overlay { background: #cc0000 !important; padding: 16px; }
         .is-breaking .hero-cat-breaking { background: transparent !important; color: #ffffff !important; display: inline-flex; align-items: center; gap: 6px; }
