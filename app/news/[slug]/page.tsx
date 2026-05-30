@@ -82,7 +82,7 @@ export default async function ArticlePage({
         .back-link { display: inline-flex; align-items: center; gap: 6px; color: #cc0000; font-size: 13px; font-weight: 700; margin-bottom: 20px; }
         .back-link:hover { text-decoration: underline; }
         .article-cat { color: #cc0000; font-size: 11px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; }
-        .article-title { font-size: 32px; font-weight: 900; line-height: 1.25; margin: 10px 0 16px; color: #111; }
+        .article-title { font-size: 32px; font-weight: 900; line-height: 1.25; margin: 8px 0 10px; color: #111; }
         .article-meta { font-size: 13px; color: #888; margin-bottom: 20px; display: flex; gap: 20px; flex-wrap: wrap; align-items: center; padding-bottom: 16px; border-bottom: 2px solid #eee; font-family: sans-serif; letter-spacing: 0.3px; }
         .share-row { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
         .share-label { font-size: 12px; font-weight: 700; color: #555; margin-right: 4px; }
@@ -148,9 +148,8 @@ export default async function ArticlePage({
               year: 'numeric', month: 'long', day: 'numeric'
             })}</span>
           )}
-          <span>|</span>
-          {post.author && <span>{post.author}</span>}
-          <span>|</span>
+          {post.author && <><span style={{color:'#ddd'}}>|</span><span>{post.author}</span></>}
+          <span style={{color:'#ddd'}}>|</span>
           <span>{readTime} min read</span>
         </div>
 
