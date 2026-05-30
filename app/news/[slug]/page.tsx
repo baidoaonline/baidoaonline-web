@@ -87,7 +87,7 @@ export default async function ArticlePage({
         .share-row { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
         .share-label { font-size: 12px; font-weight: 700; color: #555; margin-right: 4px; }
         .share-btn { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; color: #fff; font-size: 14px; font-weight: 700; cursor: pointer; border: none; text-decoration: none; }
-        .article-img { width: 100%; display: block; border-radius: 8px; margin-bottom: 28px; }
+        .article-img { width: 100%; max-height: 480px; object-fit: cover; object-position: center center; display: block; border-radius: 8px; margin-bottom: 28px; }
         .article-body { font-size: 17px; line-height: 1.85; color: #222; }
         .article-body p { margin-bottom: 20px; }
         .article-body h2 { font-size: 22px; font-weight: 900; margin: 28px 0 12px; }
