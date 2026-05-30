@@ -130,8 +130,8 @@ export default function HomeClient({ posts }: { posts: any[] }) {
         /* HERO */
         .hero-section { display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 28px; }
         .hero-main { display: block; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); background: #fff; }
-        .hero-main img { width: 100%; height: 420px; object-fit: cover; object-position: center 20%; display: block; border-radius: 12px 12px 0 0; }
-        .hero-main:hover img { }
+        .hero-main-img { width: 100%; padding-bottom: 56.25%; background-size: cover; background-position: center center; border-radius: 12px 12px 0 0; }
+        
         .hero-breaking-badge { position: absolute; top: 18px; left: 18px; background: #cc0000; color: #fff; padding: 6px 16px; font-size: 12px; font-weight: 900; border-radius: 4px; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 12px rgba(204,0,0,0.4); }
         .blink-dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; animation: blink 1s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
@@ -211,7 +211,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
         @media (max-width: 959px) {
           .navbar-links { display: none; }
           .hamburger { display: flex !important; }
-          .hero-main img { height: 320px; }
+          
           .hero-title { font-size: 20px !important; }
           .search-box { display: none; }
           .topbar { overflow: hidden; }
@@ -332,8 +332,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
           {hero && (
             <div className="hero-section">
               <a href={`/news/${hero.slug?.current}`} className="hero-main">
-                <img src={getImage(hero)} alt={hero.title}
-                  onError={(e) => { (e.target as HTMLImageElement).src = "https://placehold.co/900x500/f0f0f0/999999?text=No+Image"; }} />
+                <div className="hero-main-img" style={{ backgroundImage: `url(${getImage(hero)})` }} />//placehold.co/900x500/f0f0f0/999999?text=No+Image"; }} />
                 {hero.isBreaking && (
                   <div className="hero-breaking-badge">
                     <div className="blink-dot"></div>
