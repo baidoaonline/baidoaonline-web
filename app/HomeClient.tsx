@@ -8,7 +8,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
   const [somaliaOpen, setSomaliaOpen] = useState(false);
   const [worldOpen, setWorldOpen] = useState(false);
 
-  const hero = posts[0];
+  const hero = posts.find((p: any) => p.isBreaking) || posts[0];
   const sideArticles = posts.slice(1, 5);
   const gridArticles = posts.slice(1);
 
