@@ -332,7 +332,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
           {hero && (
             <div className="hero-section">
               <a href={`/news/${hero.slug?.current}`} className="hero-main">
-                <div className="hero-main-img" style={{ backgroundImage: `url(${getImage(hero)})` }} />//placehold.co/900x500/f0f0f0/999999?text=No+Image"; }} />
+                <div className="hero-main-img" style={{ backgroundImage: `url(${getImage(hero) || 'https://placehold.co/900x500/f0f0f0/999?text=No+Image'})` }} />
                 {hero.isBreaking && (
                   <div className="hero-breaking-badge">
                     <div className="blink-dot"></div>
