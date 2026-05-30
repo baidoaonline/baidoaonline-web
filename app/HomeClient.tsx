@@ -139,6 +139,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
         .hero-breaking-badge { position:absolute; top:18px; left:18px; background:rgba(0,0,0,0.55); color:#fff; padding:6px 14px; font-size:12px; font-weight:900; border-radius:4px; letter-spacing:1.5px; display:flex; align-items:center; gap:8px; }
         .hero-overlay { padding: 12px 0 8px; background: #fff; }
         .is-breaking .hero-overlay { background: #cc0000 !important; padding: 16px; }
+        .is-breaking .hero-title { margin-top: 8px; }
         .is-breaking .hero-cat-breaking { background: transparent !important; color: #ffffff !important; display: inline-flex; align-items: center; gap: 6px; }
         .hero-cat { background: rgba(255,255,255,0.25) !important; color: #ffffff !important; }
         .is-breaking .hero-title { color: #ffffff !important; }
