@@ -5,13 +5,13 @@ export const revalidate = 60
 
 const categoryMap: Record<string, string> = {
   wararka: 'Wararka',
-  somalia: 'Somalia',
-  adduunka: 'Adduunka',
+  somalia: 'Somalia News',
+  adduunka: 'Africa',
   siyaasadda: 'Siyaasadda',
   ciyaaraha: "Sports",
-  muuqaallo: 'Muuqaallo',
+  muuqaallo: 'Videos',
   english: 'English',
-  ganacsiga: 'Ganacsiga',
+  ganacsiga: 'Business',
   articles: 'Articles',
   opinion: 'Opinion',
   'af-maay': 'Af-Maay',
