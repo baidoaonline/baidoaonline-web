@@ -8,7 +8,7 @@ const categoryMap: Record<string, string> = {
   somalia: 'Somalia',
   adduunka: 'Adduunka',
   siyaasadda: 'Siyaasadda',
-  ciyaaraha: 'Ciyaaraha',
+  ciyaaraha: "Sports",
   muuqaallo: 'Muuqaallo',
   english: 'English',
   ganacsiga: 'Ganacsiga',
