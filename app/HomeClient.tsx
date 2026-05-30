@@ -345,7 +345,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                     {lang === "so" ? "WAR DEGDEG AH" : "BREAKING NEWS"}
                   </div>
                 )}
-                <div className="hero-overlay">
+                <div className={`hero-overlay${hero?.isBreaking ? " is-breaking" : ""}`}>
                   <span className="hero-cat">{hero.category || "News"}</span>
                   <h1 className="hero-title">{getTitle(hero)}</h1>
                   <div className="hero-meta">
