@@ -136,6 +136,12 @@ export default function HomeClient({ posts }: { posts: any[] }) {
         .blink-dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; animation: blink 1s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         .hero-overlay { padding: 12px 0 8px; background: #fff; }
+        .is-breaking .hero-overlay { background: #cc0000; padding: 16px; }
+        .is-breaking .hero-cat { background: rgba(255,255,255,0.25); color: #fff; }
+        .is-breaking .hero-title { color: #fff; }
+        .is-breaking .hero-meta { color: rgba(255,255,255,0.8); }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+        .blink-dot { width:8px; height:8px; background:#fff; border-radius:50%; animation:blink 1s infinite; flex-shrink:0; }
         .hero-cat { background: #cc0000; color: #fff; padding: 4px 12px; font-size: 11px; font-weight: 900; border-radius: 3px; display: inline-block; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
         .hero-title { color: #111; font-size: 26px; font-weight: 900; line-height: 1.3; margin-bottom: 10px; }
         .hero-meta { color: #888; font-size: 12px; display: flex; align-items: center; gap: 8px; margin-top: 4px; }
