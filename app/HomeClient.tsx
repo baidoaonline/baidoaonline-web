@@ -134,6 +134,8 @@ export default function HomeClient({ posts }: { posts: any[] }) {
         
         @keyframes pulse-dot { 0%{transform:scale(1);opacity:1} 50%{transform:scale(1.4);opacity:0.5} 100%{transform:scale(1);opacity:1} }
         .blink-dot { width:10px; height:10px; background:#fff; border-radius:50%; display:inline-block; animation:pulse-dot 1s infinite; flex-shrink:0; }
+        @keyframes blink-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(1.5)} }
+        .blink-dot { width:9px; height:9px; background:#fff; border-radius:50%; display:inline-block; flex-shrink:0; animation:blink-dot 1s ease-in-out infinite; }
         .hero-breaking-badge { position: absolute; top: 18px; left: 18px; background: #cc0000; color: #fff; padding: 6px 16px; font-size: 12px; font-weight: 900; border-radius: 4px; letter-spacing: 1.5px; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 12px rgba(204,0,0,0.4); }
         .blink-dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; animation: blink 1s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
