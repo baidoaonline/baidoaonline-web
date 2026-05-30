@@ -138,7 +138,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
         .hero-overlay { padding: 12px 0 8px; background: #fff; }
         .hero-cat { background: #cc0000; color: #fff; padding: 4px 12px; font-size: 11px; font-weight: 900; border-radius: 3px; display: inline-block; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
         .hero-title { color: #111; font-size: 26px; font-weight: 900; line-height: 1.3; margin-bottom: 10px; }
-        .hero-meta { color: rgba(255,255,255,0.65); font-size: 12px; display: flex; align-items: center; gap: 8px; }
+        .hero-meta { color: #888; font-size: 12px; display: flex; align-items: center; gap: 8px; margin-top: 4px; }
 
         /* HERO SIDE */
         .hero-side { display: flex; flex-direction: column; gap: 3px; }
