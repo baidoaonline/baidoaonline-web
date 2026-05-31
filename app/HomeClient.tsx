@@ -17,13 +17,14 @@ export default function HomeClient({ posts }: { posts: any[] }) {
     return "https://placehold.co/400x250/f0f0f0/999999?text=No+Image";
   }
 
-  function timeAgo(dateStr: string) {
+  function timeAgo(dateStr: string, lang?: string) {
     if (!dateStr) return "";
     const diff = Math.floor((Date.now() - new Date(dateStr).getTime()) / 60000);
     if (diff < 60) return `${diff} min ago`;
     const h = Math.floor(diff / 60);
     if (h < 24) return `${h} hours ago`;
-    return `${Math.floor(h / 24)} days ago`;
+    const d = new Date(dateStr);
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   }
 
   function getTitle(post: any) {
