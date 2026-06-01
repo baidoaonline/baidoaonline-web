@@ -158,10 +158,10 @@ export default async function ArticlePage({
 
         <div className="share-row">
           <span className="share-label">SHARE:</span>
-          <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`} target="_blank" rel="noreferrer" className="share-btn" style={{ background: '#1877f2' }} onClick={() => { if(typeof (window as any).gtag==='function') (window as any).gtag('event','share',{method:'facebook',content_type:'article',item_id:title}) }}>f</a>
-          <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(shareUrl)}`} target="_blank" rel="noreferrer" className="share-btn" style={{ background: '#000' }} onClick={() => { if(typeof (window as any).gtag==='function') (window as any).gtag('event','share',{method:'twitter',content_type:'article',item_id:title}) }}>𝕏</a>
-          <a href={`https://wa.me/?text=${encodeURIComponent(title + ' ' + shareUrl)}`} target="_blank" rel="noreferrer" className="share-btn" style={{ background: '#25d366' }} onClick={() => { if(typeof (window as any).gtag==='function') (window as any).gtag('event','share',{method:'whatsapp',content_type:'article',item_id:title}) }}>W</a>
-          <a href={`https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(title)}`} target="_blank" rel="noreferrer" className="share-btn" style={{ background: '#0088cc' }} onClick={() => { if(typeof (window as any).gtag==='function') (window as any).gtag('event','share',{method:'telegram',content_type:'article',item_id:title}) }}>T</a>
+          <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`} target="_blank" rel="noreferrer" className="share-btn" style={{ background: '#1877f2' }}>f</a>
+          <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(shareUrl)}`} target="_blank" rel="noreferrer" className="share-btn" style={{ background: '#000' }}>𝕏</a>
+          <a href={`https://wa.me/?text=${encodeURIComponent(title + ' ' + shareUrl)}`} target="_blank" rel="noreferrer" className="share-btn" style={{ background: '#25d366' }}>W</a>
+          <a href={`https://t.me/share/url?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(title)}`} target="_blank" rel="noreferrer" className="share-btn" style={{ background: '#0088cc' }}>T</a>
         </div>
 
         <img src={getImage() || 'https://placehold.co/900x500/f0f0f0/999?text=No+Image'} alt={title} className="article-img" />
