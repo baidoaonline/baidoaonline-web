@@ -1,6 +1,7 @@
 import { getPost, urlFor } from '@/lib/sanity'
 import { generateArticleSchema } from './structured-data'
 import { PortableText } from '@portabletext/react'
+import ScrollTracker from "./ScrollTracker"
 import { notFound } from 'next/navigation'
 
 export const revalidate = 60
@@ -163,6 +164,7 @@ export default async function ArticlePage({
 
         <img src={getImage() || 'https://placehold.co/900x500/f0f0f0/999?text=No+Image'} alt={title} className="article-img" />
 
+        <ScrollTracker title={title} />
         {body && (
           <article className="article-body">
             <PortableText value={body} />
