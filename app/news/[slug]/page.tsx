@@ -24,10 +24,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     ? `https://cdn.sanity.io/images/bbo1x3xn/production/${post.mainImage.asset._ref.replace('image-','').replace(/-([a-z]+)$/, '.$1')}`
     : 'https://www.baidoaonline.com/og-image.png'
   const title = post.titleEn || post.title || 'Baidoa Online'
+  const description = post.excerpt || post.titleEn || post.title || 'Latest news from Baidoa and Somalia'
   return {
     title,
-    openGraph: { title, images: [{ url: image }] },
-    twitter: { card: 'summary_large_image', title, images: [image] },
+    description,
+    openGraph: { title, description, images: [{ url: image }], type: 'article', siteName: 'Baidoa Online' },
+    twitter: { card: 'summary_large_image', title, description, images: [image] },
   }
 }
 
