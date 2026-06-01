@@ -53,7 +53,7 @@ export default async function ArticlePage({
 
   const title = isEnglish && post.titleEn ? post.titleEn : post.title
   const body = isEnglish && post.bodyEn ? post.bodyEn : post.body
-  const readTime = calculateReadTime(body)
+  const readTime = calculateReadTime(body || [])
   const shareUrl = `https://www.baidoaonline.com/news/${slug}`
 
   function getYouTubeEmbedUrl(url: string) {
