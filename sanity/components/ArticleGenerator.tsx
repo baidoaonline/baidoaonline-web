@@ -42,7 +42,8 @@ export function ArticleGenerator() {
 
       const pathParts = window.location.pathname.split('/')
       const rawId = decodeURIComponent(pathParts[pathParts.length - 1])
-      const docId = rawId.includes(';') ? rawId.split(';')[1].split(',')[0] : rawId
+      const cleanId = rawId.includes(';') ? rawId.split(';')[1].split(',')[0] : rawId
+      const docId = 'drafts.' + cleanId
 
       await client.patch(docId).set({
         bodyEn: [{_type:'block',_key:Math.random().toString(36).slice(2),style:'normal',children:[{_type:'span',_key:Math.random().toString(36).slice(2),text:parsed.english}]}],
