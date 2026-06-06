@@ -9,7 +9,7 @@ const client = createClient({
 
 export default async function sitemap() {
   const posts = await client.fetch(`
-    *[_type == "post"] {
+    *[_type == "post" && defined(slug.current) && slug.current != "null"] {
       "slug": slug.current,
       publishedAt
     }
