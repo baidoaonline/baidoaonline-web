@@ -18,9 +18,27 @@ export function ArticleGenerator() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ topic })
       })
+      if (!response.ok) {
+        const errText = await response.text()
+        setError(`API error ${response.status}: ${errText}`)
+        setLoading(false)
+        return
+      }
       const data = await response.json()
+      if (!data.content || !data.content[0]) {
+        setError(`Bad response: ${JSON.stringify(data)}`)
+        setLoading(false)
+        return
+      }
       const text = data.content[0].text.replace(/```json|```/g, '').trim()
-      const parsed = JSON.parse(text)
+      let parsed
+      try {
+        parsed = JSON.parse(text)
+      } catch(e) {
+        setError(`JSON parse failed. Raw: ${text.slice(0, 200)}`)
+        setLoading(false)
+        return
+      }
 
       const pathParts = window.location.pathname.split('/')
       const docId = pathParts[pathParts.length - 1]
@@ -31,8 +49,8 @@ export function ArticleGenerator() {
       }).commit()
 
       setSuccess('✅ Article generated! Scroll down to see Body fields. Click Publish when ready.')
-    } catch (e) {
-      setError('Generation failed. Please try again.')
+    } catch (e: any) {
+      setError(`Error: ${e?.message || String(e)}`)
     }
     setLoading(false)
   }, [topic, client])
@@ -41,7 +59,7 @@ export function ArticleGenerator() {
     <Stack space={3}>
       <Card padding={3} tone="primary" border>
         <Stack space={3}>
-          <Text size={2} weight="bold">🤖 AI Article Generator</Text>
+          <Text size={2} weight="bold">�� AI Article Generator</Text>
           <Text size={1} muted>Enter headline + key facts, AI writes full article in English & Somali</Text>
           <TextArea value={topic} onChange={e => setTopic(e.currentTarget.value)} placeholder="e.g. Somali parliament votes to extend president's term by 2 years. Opposition walks out. Vote was 150-42." rows={4} />
           <Button onClick={generate} disabled={loading} tone="positive" text={loading ? '✍️ Writing article...' : '🚀 Generate Full Article'} />
