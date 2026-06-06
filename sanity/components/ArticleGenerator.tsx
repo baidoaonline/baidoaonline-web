@@ -20,39 +20,35 @@ export function ArticleGenerator() {
       })
       if (!response.ok) {
         const errText = await response.text()
-        setError(`API error ${response.status}: ${errText}`)
+        setError('API error ' + response.status + ': ' + errText)
         setLoading(false)
         return
       }
       const data = await response.json()
       if (!data.content || !data.content[0]) {
-        setError(`Bad response: ${JSON.stringify(data)}`)
+        setError('Bad response: ' + JSON.stringify(data))
         setLoading(false)
         return
       }
       const text = data.content[0].text.replace(/```json|```/g, '').trim()
       let parsed
-      try {
-        parsed = JSON.parse(text)
-      } catch(e) {
-        setError(`JSON parse failed. Raw: ${text.slice(0, 200)}`)
+      try { parsed = JSON.parse(text) } catch(e) {
+        setError('JSON parse failed: ' + text.slice(0, 200))
         setLoading(false)
         return
       }
-
-      const pathParts = window.location.pathname.split('/')
-      const rawId = decodeURIComponent(pathParts[pathParts.length - 1])
-      const cleanId = rawId.includes(';') ? rawId.split(';')[1].split(',')[0] : rawId
+      const raw = decodeURIComponent(window.location.pathname.split('/').pop() || '')
+      const cleanId = raw.includes(';') ? raw.split(';')[1].split(',')[0] : raw
       const docId = 'drafts.' + cleanId
-
+      setError('DEBUG docId: ' + docId)
       await client.patch(docId).set({
         bodyEn: [{_type:'block',_key:Math.random().toString(36).slice(2),style:'normal',children:[{_type:'span',_key:Math.random().toString(36).slice(2),text:parsed.english}]}],
         body: [{_type:'block',_key:Math.random().toString(36).slice(2),style:'normal',children:[{_type:'span',_key:Math.random().toString(36).slice(2),text:parsed.somali}]}]
       }).commit()
-
       setSuccess('✅ Article generated! Scroll down to see Body fields. Click Publish when ready.')
+      setError('')
     } catch (e: any) {
-      setError(`Error: ${e?.message || String(e)}`)
+      setError('Error: ' + (e?.message || String(e)))
     }
     setLoading(false)
   }, [topic, client])
@@ -61,9 +57,9 @@ export function ArticleGenerator() {
     <Stack space={3}>
       <Card padding={3} tone="primary" border>
         <Stack space={3}>
-          <Text size={2} weight="bold">�� AI Article Generator</Text>
+          <Text size={2} weight="bold">🤖 AI Article Generator</Text>
           <Text size={1} muted>Enter headline + key facts, AI writes full article in English & Somali</Text>
-          <TextArea value={topic} onChange={e => setTopic(e.currentTarget.value)} placeholder="e.g. Somali parliament votes to extend president's term by 2 years. Opposition walks out. Vote was 150-42." rows={4} />
+          <TextArea value={topic} onChange={e => setTopic(e.currentTarget.value)} placeholder="e.g. Somali parliament votes to extend president's term by 2 years." rows={4} />
           <Button onClick={generate} disabled={loading} tone="positive" text={loading ? '✍️ Writing article...' : '🚀 Generate Full Article'} />
         </Stack>
       </Card>
