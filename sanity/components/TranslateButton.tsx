@@ -11,14 +11,10 @@ export function TranslateTitleButton(props: StringInputProps) {
     if (!sourceValue) { setError('Please fill in Title (English) first'); return }
     setLoading(true); setError('')
     try {
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
+      const response = await fetch('/api/translate-title', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 500,
-          messages: [{ role: 'user', content: `Translate this English news headline to Somali. Return only the translation:\n\n${sourceValue}` }]
-        })
+        body: JSON.stringify({ text: sourceValue })
       })
       const data = await response.json()
       props.onChange(set(data.content[0].text))
@@ -29,12 +25,7 @@ export function TranslateTitleButton(props: StringInputProps) {
   return (
     <Stack space={3}>
       {props.renderDefault(props)}
-      <Button
-        onClick={translate}
-        disabled={loading}
-        tone="primary"
-        text={loading ? '🔄 Translating...' : '🤖 Auto Translate to Somali'}
-      />
+      <Button onClick={translate} disabled={loading} tone="primary" text={loading ? '🔄 Translating...' : '🤖 Auto Translate to Somali'} />
       {error && <Card padding={2} tone="critical"><Text size={1}>{error}</Text></Card>}
     </Stack>
   )
