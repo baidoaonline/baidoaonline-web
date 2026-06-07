@@ -69,6 +69,16 @@ export default function RootLayout({
           gtag('config', 'G-RTVLE9Z5P4');
         `}} />
         <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+      <script dangerouslySetInnerHTML={{ __html: `
+        document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+        document.addEventListener('copy', function(e) { e.preventDefault(); });
+        document.addEventListener('keydown', function(e) {
+          if ((e.ctrlKey || e.metaKey) && ['c','u','s','a','p'].indexOf(e.key.toLowerCase()) !== -1) {
+            e.preventDefault();
+          }
+        });
+        document.addEventListener('selectstart', function(e) { e.preventDefault(); });
+      ` }} />
       </head>
       <body>{children}</body>
     </html>
