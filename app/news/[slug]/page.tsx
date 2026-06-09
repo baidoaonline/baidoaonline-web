@@ -28,6 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title,
     description,
+    alternates: { canonical: `https://www.baidoaonline.com/news/${post.slug?.current}` },
     openGraph: { title, description, images: [{ url: image }], type: 'article', siteName: 'Baidoa Online' },
     twitter: { card: 'summary_large_image', title, description, images: [image] },
   }
