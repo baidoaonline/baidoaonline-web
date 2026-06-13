@@ -359,7 +359,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                   )}
                   <h1 className="hero-title">{getTitle(hero)}</h1>
                   <div className="hero-meta">
-                    <span>{timeAgo(hero.publishedAt)}</span>
+                    <span suppressHydrationWarning>{timeAgo(hero.publishedAt)}</span>
                     <span>·</span>
                     <span>Baidoa Online</span>
                   </div>
@@ -374,7 +374,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                     <div>
                       <div className="side-cat">{a.category || "News"}</div>
                       <div className="side-title">{getTitle(a)}</div>
-                      <div className="side-time">{timeAgo(a.publishedAt)}</div>
+                      <div className="side-time" suppressHydrationWarning>{timeAgo(a.publishedAt)}</div>
                     </div>
                   </a>
                 ))}
@@ -397,7 +397,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                     <div className="article-card-body">
                       <span className="a-cat">{a.category || "News"}</span>
                       <div className="a-title">{getTitle(a)}</div>
-                      <span className="a-time">{timeAgo(a.publishedAt)}</span>
+                      <span className="a-time" suppressHydrationWarning>{timeAgo(a.publishedAt)}</span>
                     </div>
                   </a>
                 ))}
@@ -435,7 +435,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                       <div className="trend-num">0{i + 1}</div>
                       <div>
                         <div className="trend-title">{getTitle(a)}</div>
-                        <div className="trend-time">{timeAgo(a.publishedAt)}</div>
+                        <div className="trend-time" suppressHydrationWarning>{timeAgo(a.publishedAt)}</div>
                       </div>
                     </a>
                   ))}
