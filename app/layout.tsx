@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: "Baidoa Online — Somalia's Trusted News Source",
@@ -60,27 +61,38 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6192423933876456" crossOrigin="anonymous"></script>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-RTVLE9Z5P4"></script>
-        <script dangerouslySetInnerHTML={{ __html: `
+        <Script
+          id="adsense-init"
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6192423933876456"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="gtag-src"
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-RTVLE9Z5P4"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', 'G-RTVLE9Z5P4');
         `}} />
         <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-      <script dangerouslySetInnerHTML={{ __html: `
-        if (!window.location.pathname.startsWith('/studio')) {
-          document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
-          document.addEventListener('copy', function(e) { e.preventDefault(); });
-          document.addEventListener('keydown', function(e) {
-            if ((e.ctrlKey || e.metaKey) && ['c','u','s','a','p'].indexOf(e.key.toLowerCase()) !== -1) {
-              e.preventDefault();
-            }
-          });
-          document.addEventListener('selectstart', function(e) { e.preventDefault(); });
-        }
-      ` }} />
+        <Script id="copy-protect" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `
+          if (!window.location.pathname.startsWith('/studio')) {
+            document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+            document.addEventListener('copy', function(e) { e.preventDefault(); });
+            document.addEventListener('keydown', function(e) {
+              if ((e.ctrlKey || e.metaKey) && ['c','u','s','a','p'].indexOf(e.key.toLowerCase()) !== -1) {
+                e.preventDefault();
+              }
+            });
+            document.addEventListener('selectstart', function(e) { e.preventDefault(); });
+          }
+        ` }} />
       </head>
       <body>{children}</body>
     </html>
