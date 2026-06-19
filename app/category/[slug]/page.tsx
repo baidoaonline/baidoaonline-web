@@ -35,9 +35,6 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   if (!categoryTitle) return notFound()
 
   const isEnglish = slug === 'english'
-  const posts = await client.fetch(`*[_type == "post" && references(*[_type == "category" && title == $cat]._id)] { _id }`, { cat: categoryTitle })
-  if (posts.length === 0) return notFound()
-
   const posts = await client.fetch(
     `*[_type == "post" && ($cat == "Somalia" || references(*[_type == "category" && title == $cat]._id) || ($cat == "English" && defined(titleEn)))] | order(publishedAt desc) {
       _id, title, titleEn, slug, mainImage, publishedAt, isBreaking,
