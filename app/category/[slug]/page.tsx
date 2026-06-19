@@ -15,7 +15,6 @@ const categoryMap: Record<string, string> = {
   articles: 'Articles',
   opinion: 'Opinion',
   'af-maay': 'Af-Maay',
-  'south-west': 'South West',
   puntland: 'Puntland',
   hirshabelle: 'Hirshabelle',
   jubaland: 'Jubaland',
