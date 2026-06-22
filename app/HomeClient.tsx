@@ -6,7 +6,6 @@ export default function HomeClient({ posts }: { posts: any[] }) {
   const [lang, setLang] = useState<"so" | "en">("en");
   const [menuOpen, setMenuOpen] = useState(false);
   const [somaliaOpen, setSomaliaOpen] = useState(false);
-  const [worldOpen, setWorldOpen] = useState(false);
 
   const hero = posts[0];
   const sideArticles = posts.slice(1, 5);
@@ -46,20 +45,12 @@ export default function HomeClient({ posts }: { posts: any[] }) {
     { label: "Somaliland", href: "/category/somaliland" },
   ];
 
-  const worldRegions = [
-    { label: "Africa", href: "/category/africa" },
-    { label: "Middle East", href: "/category/middle-east" },
-    { label: "Europe", href: "/category/europe" },
-    { label: "Americas", href: "/category/americas" },
-    { label: "Asia Pacific", href: "/category/asia-pacific" },
-  ];
 
   const navLinks = [
     { label: lang === "so" ? "Hoyga" : "Home", href: "/" },
     { label: "Sports", href: "/category/ciyaaraha" },
     { label: "Business", href: "/category/ganacsiga" },
     { label: "Videos", href: "/category/muuqaallo" },
-    { label: "Af-Maay", href: "/category/af-maay" },
     { label: "Opinion", href: "/category/opinion" },
     { label: lang === "so" ? "Xiriir" : "Contact", href: "/contact" },
   ];
@@ -286,20 +277,8 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                 <a href="/category/somalia" className="nav-link">Somali News</a>
               </div>
 
-              {/* WORLD DROPDOWN */}
-              <div className="nav-item"
-                onMouseEnter={() => setWorldOpen(true)}
-                onMouseLeave={() => setWorldOpen(false)}>
-                <button className="nav-link">
-                  World <span className="nav-arrow">▾</span>
-                </button>
-                {worldOpen && (
-                  <div className="dropdown">
-                    {worldRegions.map(r => (
-                      <a key={r.label} href={r.href}>{r.label}</a>
-                    ))}
-                  </div>
-                )}
+              <div className="nav-item">
+                <a href="/category/adduunka" className="nav-link">World News</a>
               </div>
 
               {navLinks.slice(1).map(item => (
@@ -314,9 +293,8 @@ export default function HomeClient({ posts }: { posts: any[] }) {
           <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
             <a href="/" onClick={() => setMenuOpen(false)}>🏠 {lang === "so" ? "Hoyga" : "Home"}</a>
             <a href="/category/somalia" onClick={() => setMenuOpen(false)} style={{fontWeight:700}}>📰 Somali News</a>
-            <div className="mobile-section">World</div>
-            {worldRegions.map(r => (
-              <a key={r.label} href={r.href} onClick={() => setMenuOpen(false)}>  {r.label}</a>
+            <a href="/category/adduunka" onClick={() => setMenuOpen(false)}>🌍 World News</a>
+            <div style={{display:'none'}}>
             ))}
             <div className="mobile-section">More</div>
             {navLinks.slice(1).map(item => (
@@ -473,12 +451,10 @@ export default function HomeClient({ posts }: { posts: any[] }) {
             </div>
             {[
               { title: "Somali News", links: [{ label: "Somali News", href: "/category/somalia" }] },
-              { title: "World", links: worldRegions },
               { title: "More", links: [
                 { label: "Sports", href: "/category/ciyaaraha" },
                 { label: "Business", href: "/category/ganacsiga" },
-                { label: "Af-Maay", href: "/category/af-maay" },
-                { label: "Opinion", href: "/category/opinion" },
+                            { label: "Opinion", href: "/category/opinion" },
                 { label: "About Us", href: "/about" },
                 { label: "Privacy Policy", href: "/privacy" },
                 { label: "Contact", href: "/contact" },
