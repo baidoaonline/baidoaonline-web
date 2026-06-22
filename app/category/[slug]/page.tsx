@@ -6,7 +6,7 @@ export const revalidate = 60
 const categoryMap: Record<string, string> = {
   wararka: 'Wararka',
   somalia: 'Somalia News',
-  adduunka: 'Africa',
+  adduunka: 'World News',
   siyaasadda: 'Siyaasadda',
   ciyaaraha: "Sports",
   muuqaallo: 'Videos',
@@ -28,13 +28,16 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   if (!categoryTitle) return notFound()
 
   const isEnglish = slug === 'english'
+  const worldCategories = ['Africa', 'Middle East', 'Europe', 'Americas', 'Asia Pacific']
+  const isWorld = slug === 'adduunka'
+
   const posts = await client.fetch(
-    `*[_type == "post" && ($cat == "Somalia" || references(*[_type == "category" && title == $cat]._id) || ($cat == "English" && defined(titleEn)))] | order(publishedAt desc) {
+    `*[_type == "post" && ($isWorld == true ? references(*[_type == "category" && title in $worldCats]._id) : ($cat == "Somalia" || references(*[_type == "category" && title == $cat]._id) || ($cat == "English" && defined(titleEn)))) ] | order(publishedAt desc) {
       _id, title, titleEn, slug, mainImage, publishedAt, isBreaking,
       "category": categories[0]->title,
       "imageUrl": mainImage.asset->url
     }`,
-    { cat: categoryTitle }
+    { cat: categoryTitle, isWorld: slug === 'adduunka', worldCats: ['Africa', 'Middle East', 'Europe', 'Americas', 'Asia Pacific'] }
   )
 
   function timeAgo(dateStr: string) {
