@@ -28,6 +28,13 @@ export const postType = defineType({
       components: { input: TranslateTitleButton }
     }),
     defineField({
+      name: 'metaDescriptionEn',
+      title: '📝 Meta Description (English) — for Google Search',
+      type: 'text',
+      rows: 3,
+      description: '120–160 characters. This appears under your title in Google search results.',
+    }),
+    defineField({
       name: 'slug',
       type: 'slug',
       options: { source: 'titleEn' },

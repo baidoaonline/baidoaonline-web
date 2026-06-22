@@ -40,6 +40,7 @@ export async function getPost(slug: string) {
       mainImage,
       publishedAt,
       isBreaking,
+      metaDescriptionEn,
       body,
       bodyEn,
       "category": categories[0]->title,
