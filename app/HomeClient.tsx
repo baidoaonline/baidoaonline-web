@@ -251,10 +251,10 @@ export default function HomeClient({ posts }: { posts: any[] }) {
               </div>
             </a>
             <div className="navbar-right">
-              <div className="search-box">
-                <span style={{ color: "#999", fontSize: "14px" }}>🔍</span>
-                <input placeholder={lang === "so" ? "Raadi wararka..." : "Search news..."} onKeyDown={(e) => { if (e.key === "Enter" && e.currentTarget.value.trim()) { window.location.href = `/search?q=${encodeURIComponent(e.currentTarget.value.trim())}` } }} />
-              </div>
+              <form className="search-box" onSubmit={(e) => { e.preventDefault(); const q = (e.currentTarget.querySelector("input") as HTMLInputElement)?.value?.trim(); if (q) window.location.href = `/search?q=${encodeURIComponent(q)}`; }}>
+                <button type="submit" style={{ background: "none", border: "none", cursor: "pointer", color: "#999", fontSize: "14px", padding: 0 }}>🔍</button>
+                <input type="text" placeholder={lang === "so" ? "Raadi wararka..." : "Search news..."} />
+              </form>
               <div className="lang-btns">
                 <button className={`lang-btn ${lang === "en" ? "active" : ""}`} onClick={() => setLang("en")}>English</button>
                 <button className={`lang-btn ${lang === "so" ? "active" : ""}`} onClick={() => setLang("so")}>Somali</button>
