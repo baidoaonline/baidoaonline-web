@@ -274,7 +274,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
 
               {/* SOMALIA LINK */}
               <div className="nav-item">
-                <a href="/category/somalia" className="nav-link">Somali News</a>
+                <a href="/category/somalia" className="nav-link">Somalia News</a>
               </div>
 
               <div className="nav-item">
@@ -292,7 +292,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
           {/* MOBILE MENU */}
           <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
             <a href="/" onClick={() => setMenuOpen(false)}>🏠 {lang === "so" ? "Hoyga" : "Home"}</a>
-            <a href="/category/somalia" onClick={() => setMenuOpen(false)} style={{fontWeight:700}}>📰 Somali News</a>
+            <a href="/category/somalia" onClick={() => setMenuOpen(false)} style={{fontWeight:700}}>📰 Somalia News</a>
             <a href="/category/adduunka" onClick={() => setMenuOpen(false)}>🌍 World News</a>
             <div style={{display:'none'}}>
             ))}
@@ -450,7 +450,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
               <p style={{ marginTop: "8px" }}>📧 info@baidoaonline.com</p>
             </div>
             {[
-              { title: "Somali News", links: [{ label: "Somali News", href: "/category/somalia" }] },
+              { title: "Somalia News", links: [{ label: "Somalia News", href: "/category/somalia" }] },
               { title: "More", links: [
                 { label: "Sports", href: "/category/ciyaaraha" },
                 { label: "Business", href: "/category/ganacsiga" },
