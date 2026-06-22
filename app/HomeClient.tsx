@@ -8,7 +8,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
   const [somaliaOpen, setSomaliaOpen] = useState(false);
   const [worldOpen, setWorldOpen] = useState(false);
 
-  const hero = posts.find((p: any) => p.isBreaking) || posts[0];
+  const hero = posts[0];
   const sideArticles = posts.slice(1, 5);
   const gridArticles = posts.slice(1);
 
@@ -330,10 +330,10 @@ export default function HomeClient({ posts }: { posts: any[] }) {
         </nav>
 
         {/* BREAKING TICKER */}
-        <div className="breaking">
+        {breakingItems.length > 0 && <div className="breaking">
           <span className="breaking-label">{lang === "so" ? "WAR DEGDEG AH" : "BREAKING"}</span>
           <span className="breaking-text">{breakingTicker}</span>
-        </div>
+        </div>}
         </div>
         <div className="page-wrap">
           {/* HERO */}
