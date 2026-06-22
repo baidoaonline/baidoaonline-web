@@ -294,8 +294,6 @@ export default function HomeClient({ posts }: { posts: any[] }) {
             <a href="/" onClick={() => setMenuOpen(false)}>🏠 {lang === "so" ? "Hoyga" : "Home"}</a>
             <a href="/category/somalia" onClick={() => setMenuOpen(false)} style={{fontWeight:700}}>📰 Somalia News</a>
             <a href="/category/adduunka" onClick={() => setMenuOpen(false)}>🌍 World News</a>
-            <div style={{display:'none'}}>
-            ))}
             <div className="mobile-section">More</div>
             {navLinks.slice(1).map(item => (
               <a key={item.label} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</a>
