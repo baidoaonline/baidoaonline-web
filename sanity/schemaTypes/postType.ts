@@ -18,12 +18,12 @@ export const postType = defineType({
     }),
     defineField({
       name: 'titleEn',
-      title: 'Title (English)',
+      title: '🔍 SEO Title (English)',
       type: 'string',
     }),
     defineField({
       name: 'title',
-      title: 'Title (Somali) — Auto translated from English',
+      title: '🔍 SEO Title (Somali)',
       type: 'string',
       components: { input: TranslateTitleButton }
     }),
