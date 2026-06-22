@@ -30,15 +30,25 @@ export default async function CategoryPage({ params }: { params: Promise<{ slug:
   const isEnglish = slug === 'english'
   const worldCategories = ['Africa', 'Middle East', 'Europe', 'Americas', 'Asia Pacific']
   const isWorld = slug === 'adduunka'
+  const worldCats = ['Africa', 'Middle East', 'Europe', 'Americas', 'Asia Pacific']
 
-  const posts = await client.fetch(
-    `*[_type == "post" && ($isWorld == true ? references(*[_type == "category" && title in $worldCats]._id) : ($cat == "Somalia" || references(*[_type == "category" && title == $cat]._id) || ($cat == "English" && defined(titleEn)))) ] | order(publishedAt desc) {
-      _id, title, titleEn, slug, mainImage, publishedAt, isBreaking,
-      "category": categories[0]->title,
-      "imageUrl": mainImage.asset->url
-    }`,
-    { cat: categoryTitle, isWorld: slug === 'adduunka', worldCats: ['Africa', 'Middle East', 'Europe', 'Americas', 'Asia Pacific'] }
-  )
+  const posts = isWorld
+    ? await client.fetch(
+        `*[_type == "post" && references(*[_type == "category" && title in $worldCats]._id)] | order(publishedAt desc) {
+          _id, title, titleEn, slug, mainImage, publishedAt, isBreaking,
+          "category": categories[0]->title,
+          "imageUrl": mainImage.asset->url
+        }`,
+        { worldCats }
+      )
+    : await client.fetch(
+        `*[_type == "post" && ($cat == "Somalia" || references(*[_type == "category" && title == $cat]._id) || ($cat == "English" && defined(titleEn)))] | order(publishedAt desc) {
+          _id, title, titleEn, slug, mainImage, publishedAt, isBreaking,
+          "category": categories[0]->title,
+          "imageUrl": mainImage.asset->url
+        }`,
+        { cat: categoryTitle }
+      )
 
   function timeAgo(dateStr: string) {
     if (!dateStr) return ''
