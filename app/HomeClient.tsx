@@ -253,7 +253,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
             <div className="navbar-right">
               <div className="search-box">
                 <span style={{ color: "#999", fontSize: "14px" }}>🔍</span>
-                <input placeholder={lang === "so" ? "Raadi wararka..." : "Search news..."} />
+                <input placeholder={lang === "so" ? "Raadi wararka..." : "Search news..."} onKeyDown={(e) => { if (e.key === "Enter" && e.currentTarget.value.trim()) { window.location.href = `/search?q=${encodeURIComponent(e.currentTarget.value.trim())}` } }} />
               </div>
               <div className="lang-btns">
                 <button className={`lang-btn ${lang === "en" ? "active" : ""}`} onClick={() => setLang("en")}>English</button>
