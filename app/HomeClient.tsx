@@ -488,7 +488,7 @@ export default function HomeClient({ posts }: { posts: any[] }) {
             </div>
             <div className="f-col">
               <h4>Our Coverage</h4>
-              <a href="/category/somalia">South West State</a>
+              <a href="/category/somalia">Somalia</a>
               <a href="/category/somalia">Baidoa & Bay Region</a>
               <a href="/category/somalia">Horn of Africa</a>
               <a href="/category/adduunka">World News</a>
