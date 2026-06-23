@@ -50,7 +50,6 @@ export default function HomeClient({ posts }: { posts: any[] }) {
     { label: lang === "so" ? "Hoyga" : "Home", href: "/" },
     { label: "Sports", href: "/category/ciyaaraha" },
     { label: "Business", href: "/category/ganacsiga" },
-    { label: "Videos", href: "/category/muuqaallo" },
     { label: "Opinion", href: "/category/opinion" },
     { label: lang === "so" ? "Xiriir" : "Contact", href: "/contact" },
   ];
