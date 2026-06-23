@@ -454,6 +454,9 @@ export default function HomeClient({ posts }: { posts: any[] }) {
                             { label: "Opinion", href: "/category/opinion" },
                 { label: "About Us", href: "/about" },
                 { label: "Privacy Policy", href: "/privacy" },
+                { label: "Editorial Guidelines", href: "/editorial-guidelines" },
+                { label: "Terms & Conditions", href: "/terms" },
+                { label: "Cookie Policy", href: "/cookie-policy" },
                 { label: "Contact", href: "/contact" },
               ]},
             ].map(col => (
