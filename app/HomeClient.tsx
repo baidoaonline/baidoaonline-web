@@ -189,16 +189,23 @@ export default function HomeClient({ posts }: { posts: any[] }) {
         .must-title:hover { color: #cc0000; }
 
         /* FOOTER */
-        .footer { background: #f8f8f8; padding: 48px 16px 24px; margin-top: 40px; border-top: 3px solid #cc0000; }
-        .footer-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 32px; }
+        .footer { background: #111; padding: 40px 16px 0; margin-top: 40px; }
+        .footer-top { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(5, 1fr); gap: 32px; padding-bottom: 32px; border-bottom: 1px solid #333; }
+        .footer-about { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding: 32px 0; border-bottom: 1px solid #333; }
         .f-brand p { color: #555; font-size: 12px; line-height: 1.8; margin-top: 12px; }
         .f-logo-main { color: #111; font-size: 20px; font-weight: 900; letter-spacing: 3px; }
         .f-logo-sub { color: #cc0000; font-size: 8px; letter-spacing: 6px; }
         .f-col h4 { color: #111; font-size: 13px; font-weight: 900; letter-spacing: 1px; margin-bottom: 16px; text-transform: uppercase; padding-bottom: 10px; border-bottom: 2px solid #cc0000; }
         .f-col a { display: block; color: #555; font-size: 12px; margin-bottom: 10px; transition: color 0.15s; }
         .f-col a:hover { color: #cc0000; }
-        .footer-bottom { max-width: 1280px; margin: 32px auto 0; padding-top: 20px; border-top: 1px solid #ddd; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
-        .footer-bottom p { color: #888; font-size: 11px; }
+        .f-col h4 { color: #fff; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 14px; }
+        .f-col a { display: block; color: #999; font-size: 13px; margin-bottom: 9px; text-decoration: none; }
+        .f-col a:hover { color: #fff; }
+        .f-brand p { color: #999; font-size: 13px; line-height: 1.6; margin-bottom: 6px; }
+        .f-logo-main { font-size: 18px; font-weight: 900; letter-spacing: 3px; color: #fff; }
+        .f-logo-sub { font-size: 8px; letter-spacing: 4px; color: #cc0000; font-weight: 700; }
+        .footer-bottom { max-width: 1280px; margin: 0 auto; padding: 14px 0; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; align-items: center; }
+        .footer-bottom p { color: #555; font-size: 11px; }
 
         /* RESPONSIVE */
         @media (min-width: 960px) {
@@ -434,44 +441,68 @@ export default function HomeClient({ posts }: { posts: any[] }) {
 
         {/* FOOTER */}
         <footer className="footer">
-          <div className="footer-inner">
-            <div className="f-brand">
-              <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
-                <div style={{width:'32px',height:'32px'}}><svg viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg"><circle cx="21" cy="21" r="19" fill="none" stroke="#cc0000" strokeWidth="1.5" strokeOpacity="0.15"/><circle cx="21" cy="21" r="15" fill="none" stroke="#cc0000" strokeWidth="1.5" strokeOpacity="0.3"/><circle cx="21" cy="21" r="11" fill="none" stroke="#cc0000" strokeWidth="1.5" strokeOpacity="0.5"/><circle cx="21" cy="21" r="7" fill="none" stroke="#cc0000" strokeWidth="1.5" strokeOpacity="0.75"/><circle cx="21" cy="21" r="4" fill="#cc0000"/></svg></div>
-                <div>
-                  <div className="f-logo-main">BAIDOA</div>
-                  <div className="f-logo-sub">ONLINE</div>
-                </div>
-              </div>
-              <p>{lang === "so" ? "Ilo wareedka ugu la-aamin badan ee Soomaaliya." : "Somalia's most trusted news source."}</p>
-              <p style={{ marginTop: "8px" }}>📧 info@baidoaonline.com</p>
+          {/* BBC-style top row: news category columns */}
+          <div className="footer-top">
+            <div className="f-col">
+              <h4>Somalia</h4>
+              <a href="/category/somalia">Somalia News</a>
+              <a href="/category/ciyaaraha">Sports</a>
+              <a href="/category/ganacsiga">Business</a>
+              <a href="/category/opinion">Opinion</a>
             </div>
-            {[
-              { title: "Somalia News", links: [{ label: "Somalia News", href: "/category/somalia" }] },
-              { title: "More", links: [
-                { label: "Sports", href: "/category/ciyaaraha" },
-                { label: "Business", href: "/category/ganacsiga" },
-                            { label: "Opinion", href: "/category/opinion" },
-                { label: "About Us", href: "/about" },
-                { label: "Privacy Policy", href: "/privacy" },
-                { label: "Editorial Guidelines", href: "/editorial-guidelines" },
-                { label: "Terms & Conditions", href: "/terms" },
-                { label: "Cookie Policy", href: "/cookie-policy" },
-                { label: "Contact", href: "/contact" },
-              ]},
-            ].map(col => (
-              <div key={col.title} className="f-col">
-                <h4>{col.title}</h4>
-                {col.links.map((link: any) => <a key={link.label} href={link.href}>{link.label}</a>)}
+            <div className="f-col">
+              <h4>World News</h4>
+              <a href="/category/adduunka">All World News</a>
+              <a href="/category/africa">Africa</a>
+              <a href="/category/middle-east">Middle East</a>
+              <a href="/category/europe">Europe</a>
+            </div>
+            <div className="f-col">
+              <h4>About</h4>
+              <a href="/about">About Us</a>
+              <a href="/contact">Contact Us</a>
+              <a href="/editorial-guidelines">Editorial Guidelines</a>
+            </div>
+            <div className="f-col">
+              <h4>Legal</h4>
+              <a href="/privacy">Privacy Policy</a>
+              <a href="/terms">Terms & Conditions</a>
+              <a href="/cookie-policy">Cookie Policy</a>
+            </div>
+            <div className="f-col">
+              <h4>Follow Us</h4>
+              <a href="https://twitter.com/BaidoaOnline" target="_blank" rel="noreferrer">𝕏 Twitter</a>
+              <a href="https://facebook.com/baidoaonline" target="_blank" rel="noreferrer">Facebook</a>
+              <a href="https://youtube.com/@baidoaonline" target="_blank" rel="noreferrer">YouTube</a>
+            </div>
+          </div>
+          {/* Al Jazeera-style about row */}
+          <div className="footer-about">
+            <div className="f-brand">
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "12px" }}>
+                <div style={{width:'28px',height:'28px'}}><svg viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg"><circle cx="21" cy="21" r="15" fill="none" stroke="#cc0000" strokeWidth="1.5" strokeOpacity="0.5"/><circle cx="21" cy="21" r="9" fill="none" stroke="#cc0000" strokeWidth="1.5" strokeOpacity="0.75"/><circle cx="21" cy="21" r="4" fill="#cc0000"/></svg></div>
+                <div><div className="f-logo-main">BAIDOA</div><div className="f-logo-sub">ONLINE</div></div>
               </div>
-            ))}
+              <p>{lang === "so" ? "Wariye madax-bannaan oo xog-ogaal ah ee Koonfurta Soomaaliya iyo Geeska Afrika." : "Independent news covering South West Somalia and the Horn of Africa."}</p>
+              <p style={{marginTop:'8px'}}>📧 info@baidoaonline.com</p>
+            </div>
+            <div className="f-col">
+              <h4>Our Coverage</h4>
+              <a href="/category/somalia">South West State</a>
+              <a href="/category/somalia">Baidoa & Bay Region</a>
+              <a href="/category/somalia">Horn of Africa</a>
+              <a href="/category/adduunka">World News</a>
+            </div>
+            <div className="f-col">
+              <h4>Connect</h4>
+              <a href="/contact">Contact Us</a>
+              <a href="mailto:info@baidoaonline.com">info@baidoaonline.com</a>
+              <a href="https://twitter.com/BaidoaOnline" target="_blank" rel="noreferrer">@BaidoaOnline</a>
+            </div>
           </div>
           <div className="footer-bottom">
             <p>© 2026 Baidoa Online. {lang === "so" ? "Xuquuqda oo dhan way ilaalisan yihiin." : "All rights reserved."}</p>
-            <div style={{display:"flex",alignItems:"center",gap:"10px"}}>
-              <svg width="32" height="32" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="21" cy="21" r="19" fill="none" stroke="#cc0000" strokeWidth="1.5" strokeOpacity="0.3"/><circle cx="21" cy="21" r="14" fill="none" stroke="#cc0000" strokeWidth="1.5" strokeOpacity="0.5"/><circle cx="21" cy="21" r="9" fill="none" stroke="#cc0000" strokeWidth="1.5" strokeOpacity="0.75"/><circle cx="21" cy="21" r="4" fill="#cc0000"/></svg>
-              <span style={{fontWeight:900,fontSize:"14px",color:"#111",letterSpacing:"2px"}}>BAIDOA <span style={{color:"#cc0000"}}>ONLINE</span></span>
-            </div>
+            <p style={{color:'#444'}}>Baidoa · Bay Region · South West State · Somalia</p>
           </div>
         </footer>
       </div>

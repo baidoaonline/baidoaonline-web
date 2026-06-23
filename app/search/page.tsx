@@ -13,7 +13,7 @@ export default async function SearchPage({ searchParams }: { searchParams: Promi
       "category": categories[0]->title,
       "imageUrl": mainImage.asset->url
     }`,
-    { query: `*${q}*` }
+    { query: `*${q}*` } as any
   )
 
   function timeAgo(dateStr: string) {
