@@ -300,14 +300,10 @@ export default function HomeClient({ posts }: { posts: any[] }) {
             <a href="/" onClick={() => setMenuOpen(false)}>🏠 {lang === "so" ? "Hoyga" : "Home"}</a>
             <a href="/category/somalia" onClick={() => setMenuOpen(false)} style={{fontWeight:700}}>📰 Somalia News</a>
             <a href="/category/adduunka" onClick={() => setMenuOpen(false)}>🌍 World News</a>
-            <div className="mobile-section">More</div>
             {navLinks.slice(1).map(item => (
               <a key={item.label} href={item.href} onClick={() => setMenuOpen(false)}>{item.label}</a>
             ))}
-            <div style={{ display: "flex", gap: "8px", padding: "12px 16px" }}>
-              <button className={`lang-btn ${lang === "en" ? "active" : ""}`} onClick={() => setLang("en")} style={{ border: "1px solid #ddd", borderRadius: "4px", padding: "8px 16px", cursor: "pointer" }}>English</button>
-              <button className={`lang-btn ${lang === "so" ? "active" : ""}`} onClick={() => setLang("so")} style={{ border: "1px solid #ddd", borderRadius: "4px", padding: "8px 16px", cursor: "pointer" }}>Somali</button>
-            </div>
+
           </div>
         </nav>
 
